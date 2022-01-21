@@ -29,7 +29,10 @@
         ],
         "timestamp": [
           "timestamp"
-        ]
+        ],
+          "pool": [
+              "id"
+          ]
       },
       "query": {
         "extra_fields": {
