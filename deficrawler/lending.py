@@ -75,7 +75,6 @@ class Lending(ProtocolBase):
         """
         Gets rates data for the specified entity in the from_data to to_date period.
         """
-
         from_timestamp = int(
             datetime.strptime(from_date, '%d/%m/%Y %H:%M:%S').timestamp())
 
@@ -150,6 +149,24 @@ class Lending(ProtocolBase):
         response_data = super().query_data_filtered(
             entity='user_position',
             filters={user_name: user}
+        )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+
+    def get_user_history(self, user):
+        """
+        Returns the user positions (portfolio) history of the given user
+        """
+
+        config = super().get_protocol_config('user_history')
+        user_name = self.mappings_file['entities']['user_history']['query']['params']['user']
+
+            # filters={user_name: user}
+        response_data = super().query_data_parameter(
+            entity='user_history',
         )
 
         return super().map_data(

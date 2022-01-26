@@ -369,6 +369,50 @@
         "collateral_amount": "decimals",
         "debt_amount": "decimals"
       }
+    },
+    "user_history": {
+        "attributes": {
+            "user_reserve_id": [
+                "id"
+            ],
+            "user_id": [
+                "user",
+                "id"
+            ],
+            "aTokenBalanceHistory": [
+                "currentATokenBalance",
+                "timestamp"
+            ],
+            "vTokenBalanceHistory": [
+                "currentVariableDebt",
+                "timestamp"
+            ],
+            "usageAsCollateralHistory": [
+                "fromState",
+                "toState",
+                "timestamp"
+            ],
+            "borrowHistory": [
+                "amount",
+                "borrowRate",
+                "timestamp"
+            ]
+        },
+        "query": {
+            "name": "userReserves",
+            "extra_fields": {
+                "decimals": [
+                    "reserve",
+                    "decimals"
+                ]
+            },
+            "params": {
+                "user": "user",
+                "initial_value": "0",
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": { }
     }
   }
 }
