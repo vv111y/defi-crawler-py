@@ -335,6 +335,47 @@
             "tx_id": "tx_id_colon"
         }
     },
+    "collateralize": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "fromState": [
+          "fromState"
+        ],
+        "toState": [
+            "toState"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "name": "UsageAsCollaterals",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
       "attributes": {
         "tx_id": [
           "id"
