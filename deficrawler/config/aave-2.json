@@ -417,42 +417,43 @@
             "tx_id": "tx_id_colon"
         }
     },
-      "attributes": {
+    "flashloans": {
+        "attributes": {
         "tx_id": [
-          "id"
+            "id"
         ],
         "user": [
-          "initiator",
-          "id"
+            "initiator",
+            "id"
         ],
         "token": [
-          "reserve",
-          "symbol"
+            "reserve",
+            "symbol"
         ],
         "amount": [
-          "amount"
+            "amount"
         ],
         "timestamp": [
-          "timestamp"
+            "timestamp"
         ]
-      },
-      "query": {
+        },
+        "query": {
         "name": "flashLoans",
         "extra_fields": {
-          "decimals": [
+            "decimals": [
             "reserve",
             "decimals"
-          ]
+            ]
         },
         "params": {
-          "orderBy": "timestamp",
-          "user": "initiator"
+            "orderBy": "timestamp",
+            "user": "initiator"
         }
-      },
-      "transformations": {
+        },
+        "transformations": {
         "amount": "decimals",
         "tx_id": "tx_id_colon"
-      }
+        }
     },
     "rates": {
       "attributes": {
