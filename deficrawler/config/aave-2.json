@@ -870,6 +870,63 @@
             "tx_id": "tx_id_colon"
         }
     },
+    "ReserveConfigurationHistoryItem": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "usageAsCollateralEnabled": [
+            "usageAsCollateralEnabled"
+        ],
+        "borrowingEnabled": [
+            "borrowingEnabled"
+        ],
+        "stableBorrowRateEnabled": [
+          "stableBorrowRateEnabled"
+        ],
+        "isActive": [
+            "isActive"
+        ],
+        "isFrozen": [
+            "isFrozen"
+        ],
+        "reserveInterestRateStrategy": [
+            "reserveInterestRateStrategy"
+        ],
+        "baseLTVasCollateral": [
+            "baseLTVasCollateral"
+        ],
+        "reserveLiquidationThreshold": [
+            "reserveLiquidationThreshold"
+        ],
+        "reserveLiquidationBonus": [
+            "reserveLiquidationBonus"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "name": "ReserveConfigurationHistoryItems",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
     }
   }
 }
