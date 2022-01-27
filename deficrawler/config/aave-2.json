@@ -20,12 +20,28 @@
           "user",
           "id"
         ],
+        "onBehalfOf": [
+            "onBehalfOf",
+            "id"
+        ],
         "token": [
           "reserve",
           "symbol"
         ],
         "amount": [
           "amount"
+        ],
+        "rate": [
+          "borrowRate"
+        ],
+        "borrowRateMode": [
+          "borrowRateMode"
+        ],
+        "stableTokenDebt": [
+          "stableTokenDebt"
+        ],
+        "variableTokenDebt": [
+            "variableTokenDebt"
         ],
         "timestamp": [
           "timestamp"
