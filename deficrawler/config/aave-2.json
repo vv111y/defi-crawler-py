@@ -376,6 +376,47 @@
         "tx_id": "tx_id_colon"
       }
     },
+    "rebalancestableborrowrate": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user": [
+                "user",
+                "id"
+            ],
+            "token": [
+                "reserve",
+                "symbol"
+            ],
+            "borrowRateFrom": [
+                "borrowRateFrom"
+            ],
+            "borrowRateTo": [
+                "borrowRateTo"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "extra_fields": {
+                "decimals": [
+                    "reserve",
+                    "decimals"
+                ]
+            },
+            "name": "RebalanceStableBorrowRates",
+            "params": {
+                "orderBy": "timestamp",
+                "user": "user"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
       "attributes": {
         "tx_id": [
           "id"
