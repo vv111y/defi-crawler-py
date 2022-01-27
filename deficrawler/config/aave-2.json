@@ -156,6 +156,62 @@
         "tx_id": "tx_id_colon"
       }
     },
+    "originationfeeliquidation": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "token_principal": [
+          "principalReserve",
+          "symbol"
+        ],
+        "token_collateral": [
+          "collateralReserve",
+          "symbol"
+        ],
+        "amount_principal": [
+          "principalAmount"
+        ],
+        "amount_collateral": [
+          "collateralAmount"
+        ],
+        "feeLiquidated": [
+          "feeLiquidated"
+        ],
+        "liquidatedCollateralForFee": [
+            "liquidatedCollateralForFee"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "principal_decimals": [
+            "principalReserve",
+            "decimals"
+          ],
+          "collateral_decimals": [
+            "collateralReserve",
+            "decimals"
+          ]
+        },
+        "name": "OriginationFeeLiquidation",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount_principal": "principal_decimals",
+        "amount_collateral": "collateral_decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
     "repay": {
       "attributes": {
         "tx_id": [
