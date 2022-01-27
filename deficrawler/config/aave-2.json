@@ -945,16 +945,44 @@
       },
       "query": {
         "extra_fields": {
-          "decimals": [
-            "reserve",
-            "decimals"
-          ]
         },
         "name": "PriceHistoryItems",
         "params": {
           "orderBy": "timestamp"
         }
       },
+      "transformations": {
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "UsdEthPriceHistoryItem": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "price": [
+                "price"
+            ],
+            "PriceOracle": [
+                "PriceOracle",
+                "id"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "extra_fields": {
+            },
+            "name": "UsdEthPriceHistoryItems",
+            "params": {
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {
+            "tx_id": "tx_id_colon"
+        }
+    },
       "transformations": {
         "amount": "decimals",
         "tx_id": "tx_id_colon"
