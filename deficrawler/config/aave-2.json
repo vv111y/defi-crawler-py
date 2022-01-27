@@ -288,7 +288,53 @@
         "tx_id": "tx_id_colon"
       }
     },
-    "flashloans": {
+    "swap": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user": [
+                "user",
+                "id"
+            ],
+            "token": [
+                "reserve",
+                "symbol"
+            ],
+            "borrowRateModeFrom": [
+                "borrowRateModeFrom"
+            ],
+            "borrowRateModeTo": [
+                "borrowRateModeTo"
+            ],
+            "stableBorrowRate": [
+                "stableBorrowRate"
+            ],
+            "variableBorrowRate": [
+                "variableBorrowRate"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "extra_fields": {
+                "decimals": [
+                    "reserve",
+                    "decimals"
+                ]
+            },
+            "name": "Swaps",
+            "params": {
+                "orderBy": "timestamp",
+                "user": "user"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
       "attributes": {
         "tx_id": [
           "id"
