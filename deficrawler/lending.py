@@ -164,15 +164,32 @@ class Lending(ProtocolBase):
         config = super().get_protocol_config('user_history')
         user_name = self.mappings_file['entities']['user_history']['query']['params']['user']
 
-            # filters={user_name: user}
-        response_data = super().query_data_parameter(
+        response_data = super().query_data_filtered(
             entity='user_history',
+            filters={user_name: user}
         )
 
         return super().map_data(
             response_data=response_data,
             config=config
         )
+
+    def get_user_reserves(self):
+        """Returns all user reserves."""
+
+        config = super().get_protocol_config('user_reserves')
+        # user_name = self.mappings_file['entities']['user_reserves']['query']['params']['user']
+
+            # filters={user_name: user}
+        response_data = super().query_data_parameter(
+            entity='user_reserves',
+        )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+        
 
     def supported_entities(self):
         """
