@@ -729,22 +729,37 @@
             "VariableTokenDelegatedAllowance": "transfer_list"
         }
     },
-                "timestamp"
+    "aTokenBalanceHistoryItems": {
+        "attributes": {
+            "tx_id": [
+                "id"
             ],
-            "usageAsCollateralHistory": [
-                "fromState",
-                "toState",
-                "timestamp"
+            "user_reserve_id": [
+                "userReserve",
+                "id"
             ],
-            "borrowHistory": [
-                "amount",
-                "borrowRate",
+            "user_id":[
+                "userReserve",
+                "user",
+                "id"
+            ],
+
+            "scaledATokenBalance":[
+                "scaledATokenBalance"
+            ],
+            "currentATokenBalance":[
+                "currentATokenBalance"
+            ],
+            "timestamp": [
                 "timestamp"
             ]
         },
         "query": {
-            "name": "userReserves",
+            "name": "aTokenBalanceHistoryItems",
             "extra_fields": {
+                "userReserve": [
+                    "userReserve"
+                ],
                 "decimals": [
                     "reserve",
                     "decimals"
@@ -756,7 +771,105 @@
                 "orderBy": "timestamp"
             }
         },
-        "transformations": { }
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
+    "vTokenBalanceHistoryItems": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "user_id":[
+                "userReserve",
+                "user",
+                "id"
+            ],
+
+            "scaledATokenBalance":[
+                "scaledATokenBalance"
+            ],
+            "currentATokenBalance":[
+                "currentATokenBalance"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "name": "vTokenBalanceHistoryItems",
+            "extra_fields": {
+                "userReserve": [
+                    "userReserve"
+                ],
+                "decimals": [
+                    "reserve",
+                    "decimals"
+                ]
+            },
+            "params": {
+                "user": "user",
+                "initial_value": "0",
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
+    "sTokenBalanceHistoryItems": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "user_id":[
+                "userReserve",
+                "user",
+                "id"
+            ],
+
+            "scaledATokenBalance":[
+                "scaledATokenBalance"
+            ],
+            "currentATokenBalance":[
+                "currentATokenBalance"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "name": "sTokenBalanceHistoryItems",
+            "extra_fields": {
+                "userReserve": [
+                    "userReserve"
+                ],
+                "decimals": [
+                    "reserve",
+                    "decimals"
+                ]
+            },
+            "params": {
+                "user": "user",
+                "initial_value": "0",
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
     }
   }
 }
