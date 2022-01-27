@@ -1037,9 +1037,70 @@
         "tx_id": "tx_id_colon"
       }
     },
+    "PriceOracle": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "version": [
+            "version"
+        ],
+        "PriceOracle ": [
+            "PriceOracle",
+            "id"
+        ],
+        "proxyPriceProvider": [
+            "proxyPriceProvider"
+        ],
+        "usdPriceEth": [
+            "usdPriceEth"
+        ],
+        "usdPriceEthMainSource": [
+            "usdPriceEthMainSource"
+        ],
+        "usdPriceEthFallbackRequired": [
+            "usdPriceEthFallbackRequired"
+        ],
+        "fallbackPriceOracle": [
+            "fallbackPriceOracle"
+        ],
+        "usdDependentAssets": [
+            "usdDependentAssets",
+            "id"
+        ],
+        "tokens": [
+            "tokens",
+            "id"
+        ],
+        "tokensWithFallback": [
+            "tokensWithFallback",
+            "id"
+        ],
+        "usdPriceEthHistory": [
+            "usdPriceEthHistory"
+        ],
+        "fromChainlinkSourcesRegistry": [
+            "fromChainlinkSourcesRegistry"
+        ],
+        "lastUpdateTimestamp": [
+          "lastUpdateTimestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+        },
+        "name": "PriceOracles",
+        "params": {
+          "orderBy": "lastUpdateTimestamp"
+        }
+      },
+      "transformations": {
+        "usdDependentAssets": "transfer_list",
+        "priceHistory": "transfer_list",
         "tx_id": "tx_id_colon"
       }
     }
+
 
   }
 }

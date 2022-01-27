@@ -5,34 +5,22 @@
     borrows: [Borrow!]! @derivedFrom(field: "referrer")
   }
 
-# NOT DONE 
+# DONE 
 type PriceOracleAsset @entity {
   # underlying asset address
   id: ID!
   oracle: PriceOracle!
   priceInEth: BigInt!
+
   priceSource: Bytes!
   isFallbackRequired: Boolean!
   type: PriceOracleAssetType!
   platform: PriceOracleAssetPlatform!
   dependentAssets: [PriceOracleAsset!]!
-  lastUpdateTimestamp: Int!
   priceHistory: [PriceHistoryItem!]! @derivedFrom(field: "asset")
   fromChainlinkSourcesRegistry: Boolean!
-}
-type PriceOracle @entity {
-  id: ID!
-  proxyPriceProvider: Bytes!
-  usdPriceEth: BigInt!
-  usdPriceEthMainSource: Bytes!
-  usdPriceEthFallbackRequired: Boolean!
-  usdDependentAssets: [PriceOracleAsset!]!
-  fallbackPriceOracle: Bytes!
-  tokens: [PriceOracleAsset!]! @derivedFrom(field: "oracle")
-  usdPriceEthHistory: [UsdEthPriceHistoryItem!]! @derivedFrom(field: "oracle")
-  tokensWithFallback: [PriceOracleAsset!]!
+
   lastUpdateTimestamp: Int!
-  version: Int!
 }
 type PriceHistoryItem @entity {
   id: ID!
@@ -40,11 +28,32 @@ type PriceHistoryItem @entity {
   price: BigInt!
   timestamp: Int!
 }
+
 type UsdEthPriceHistoryItem @entity {
   id: ID!
   oracle: PriceOracle!
   price: BigInt!
   timestamp: Int!
+}
+
+# NOT DONE 
+type PriceOracle @entity {
+  id: ID!
+  proxyPriceProvider: Bytes!
+  usdPriceEth: BigInt!
+  usdPriceEthMainSource: Bytes!
+  usdPriceEthFallbackRequired: Boolean!
+  fallbackPriceOracle: Bytes!
+
+  usdDependentAssets: [PriceOracleAsset!]!
+
+  tokens: [PriceOracleAsset!]! @derivedFrom(field: "oracle")
+  tokensWithFallback: [PriceOracleAsset!]!
+
+  usdPriceEthHistory: [UsdEthPriceHistoryItem!]! @derivedFrom(field: "oracle")
+
+  lastUpdateTimestamp: Int!
+  version: Int!
 }
 # NOT DONE 
 type ChainlinkENS @entity {
