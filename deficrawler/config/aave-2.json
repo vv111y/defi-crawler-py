@@ -523,6 +523,15 @@
         "liquidations_count": [
           "liquidationCallHistory",
           "id"
+        ],
+        "unclaimedRewards": [
+            "unclaimedRewards"
+        ],
+        "lifetimeRewards": [
+            "lifetimeRewards"
+        ], 
+        "incentivesLastUpdated": [
+            "incentivesLastUpdated"
         ]
       },
       "query": {
@@ -576,13 +585,37 @@
             "user_reserve_id": [
                 "id"
             ],
+            "last_update": [
+                "lastUpdateTimestamp"
+            ],
             "user_id": [
                 "user",
                 "id"
             ],
             "aTokenBalanceHistory": [
+                "aTokenBalanceHistory",
                 "currentATokenBalance",
+                "aTokenBalanceHistory",
                 "timestamp"
+            ]
+        },
+        "query": {
+            "name": "userReserves",
+            "extra_fields": {
+                "aTokenBalanceHistory": [
+                    "aTokenBalanceHistory"
+                ]
+            },
+            "params": {
+                "user": "user",
+                "initial_value": "0",
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {
+            "aTokenBalanceHistory": "transfer_list"
+        }
+    },
             ],
             "vTokenBalanceHistory": [
                 "currentVariableDebt",
