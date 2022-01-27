@@ -927,6 +927,39 @@
         "amount": "decimals",
         "tx_id": "tx_id_colon"
       }
+    },
+    "PriceHistoryItem": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "price": [
+          "price"
+        ],
+        "PriceOracleAsset": [
+            "PriceOracleAsset"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "name": "PriceHistoryItems",
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
     }
+
   }
 }

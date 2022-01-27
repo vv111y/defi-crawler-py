@@ -46,6 +46,7 @@ type UsdEthPriceHistoryItem @entity {
   price: BigInt!
   timestamp: Int!
 }
+# NOT DONE 
 type ChainlinkENS @entity {
   "id is the node hash"
   id: ID!
@@ -62,6 +63,7 @@ type ChainlinkAggregator @entity {
   oracleAsset: PriceOracleAsset!
 }
 
+# NOT DONE 
 type IncentivizedAction @entity {
   """
   txHash
