@@ -983,8 +983,60 @@
             "tx_id": "tx_id_colon"
         }
     },
+    "PriceOracleAsset": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "PriceOracle ": [
+            "PriceOracle",
+            "id"
+        ],
+        "priceInEth": [
+            "priceInEth"
+        ],
+        "priceSource": [
+            "priceSource"
+        ],
+        "isFallbackRequired": [
+            "isFallbackRequired"
+        ],
+        "type": [
+            "type"
+        ],
+        "platform": [
+            "platform"
+        ],
+        "dependentAssets": [
+            "dependentAssets",
+            "id"
+        ],
+        "priceHistory": [
+            "priceHistory",
+            "id"
+        ],
+        "fromChainlinkSourcesRegistry": [
+            "fromChainlinkSourcesRegistry"
+        ],
+        "lastUpdateTimestamp": [
+          "lastUpdateTimestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+        },
+        "name": "PriceOracleAssets",
+        "params": {
+          "orderBy": "lastUpdateTimestamp"
+        }
+      },
       "transformations": {
         "amount": "decimals",
+        "dependentAssets": "transfer_list",
+        "priceHistory": "transfer_list",
+        "tx_id": "tx_id_colon"
+      }
+    },
         "tx_id": "tx_id_colon"
       }
     }
