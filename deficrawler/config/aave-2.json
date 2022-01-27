@@ -616,9 +616,119 @@
             "aTokenBalanceHistory": "transfer_list"
         }
     },
+    "user_reserves": {
+        "attributes": {
+            "id": [
+                "id"
             ],
-            "vTokenBalanceHistory": [
-                "currentVariableDebt",
+            "last_update":[
+                "lastUpdateTimestamp"
+            ],
+            "user_id": [
+                "user",
+                "id"
+            ],
+            "pool_id": [
+                "pool",
+                "id"
+            ],
+            "reserve_id": [
+                "reserve",
+                "id"
+            ],
+            "usageAsCollateralEnabledOnUser": [
+                "usageAsCollateralEnabledOnUser"
+            ],
+            "scaledATokenBalance": [
+                "scaledATokenBalance"
+            ],
+            "currentATokenBalance": [
+                "currentATokenBalance"
+            ],
+            "scaledVariableDebt": [
+                "scaledVariableDebt"
+            ],
+            "currentVariableDebt": [
+                "currentVariableDebt"
+            ],
+            "principalStableDebt": [
+                "principalStableDebt"
+            ],
+            "currentStableDebt": [
+                "currentStableDebt"
+            ],
+            "currentTotalDebt": [
+                "currentTotalDebt"
+            ],
+            "stableBorrowRate": [
+                "stableBorrowRate"
+            ],
+            "oldStableBorrowRate": [
+                "oldStableBorrowRate"
+            ],
+            "liquidityRate": [
+                "liquidityRate"
+            ],
+            "stableBorrowLastUpdateTimestamp": [
+                "stableBorrowLastUpdateTimestamp"
+            ],
+            "variableBorrowIndex": [
+                "variableBorrowIndex"
+            ],
+            "aTokenincentivesUserIndex": [
+                "aTokenincentivesUserIndex"
+            ],
+            "vTokenincentivesUserIndex": [
+                "vTokenincentivesUserIndex"
+            ],
+            "sTokenincentivesUserIndex": [
+                "sTokenincentivesUserIndex"
+            ],
+            "aIncentivesLastUpdateTimestamp": [
+                "aIncentivesLastUpdateTimestamp"
+            ],
+            "vIncentivesLastUpdateTimestamp": [
+                "vIncentivesLastUpdateTimestamp"
+            ],
+            "sIncentivesLastUpdateTimestamp": [
+                "sIncentivesLastUpdateTimestamp"
+            ],
+            "stableTokenDelegatedAllowances": [
+                "StableTokenDelegatedAllowance",
+                "id",
+                "StableTokenDelegatedAllowance",
+                "fromUser",
+                "StableTokenDelegatedAllowance",
+                "toUser",
+                "StableTokenDelegatedAllowance",
+                "amountAllowed"
+            ],
+            "variableTokenDelegatedAllowances": [
+                "VariableTokenDelegatedAllowance",
+                "id",
+                "VariableTokenDelegatedAllowance",
+                "fromUser",
+                "VariableTokenDelegatedAllowance",
+                "toUser",
+                "VariableTokenDelegatedAllowance",
+                "amountAllowed"
+            ]
+        },
+        "query": {
+            "name": "userReserves",
+            "extra_fields": {
+            },
+            "params": {
+                "user": "user",
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {
+            "StableTokenDelegatedAllowance": "transfer_list",
+            "VariableTokenDelegatedAllowance": "transfer_list"
+        }
+    },
                 "timestamp"
             ],
             "usageAsCollateralHistory": [
