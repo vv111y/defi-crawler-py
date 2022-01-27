@@ -1,108 +1,11 @@
-type Protocol @entity {
-  # just 1 for now
-  id: ID!
-  pools: [Pool!]! @derivedFrom(field: "protocol")
-}
+# ? dont know
+  type Referrer @entity {
+    id: ID!
+    deposits: [Deposit!]! @derivedFrom(field: "referrer")
+    borrows: [Borrow!]! @derivedFrom(field: "referrer")
+  }
 
-# service entity, when we receiving an event we should wknow which pool is it
-type ContractToPoolMapping @entity {
-  # contract address
-  id: ID!
-  pool: Pool!
-}
-
-type PoolConfigurationHistoryItem @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  active: Boolean
-  pool: Pool!
-  lendingPool: Bytes
-  lendingPoolCollateralManager: Bytes
-  lendingPoolConfiguratorImpl: Bytes
-  lendingPoolImpl: Bytes
-  lendingPoolConfigurator: Bytes
-  proxyPriceProvider: Bytes
-  lendingRateOracle: Bytes
-  configurationAdmin: Bytes
-  timestamp: Int!
-}
-
-type Pool @entity {
-  id: ID!
-  protocol: Protocol!
-  lendingPool: Bytes
-  lendingPoolCollateralManager: Bytes
-  lendingPoolConfiguratorImpl: Bytes
-  lendingPoolImpl: Bytes
-  lendingPoolConfigurator: Bytes
-  proxyPriceProvider: Bytes
-  lendingRateOracle: Bytes
-  configurationAdmin: Bytes
-  ethereumAddress: Bytes
-  emergencyAdmin: Bytes
-  history: [PoolConfigurationHistoryItem!]! @derivedFrom(field: "pool")
-  lastUpdateTimestamp: Int!
-
-  reserves: [Reserve!]! @derivedFrom(field: "pool")
-  depositHistory: [Deposit!]! @derivedFrom(field: "pool")
-  redeemUnderlyingHistory: [RedeemUnderlying!]! @derivedFrom(field: "pool")
-  borrowHistory: [Borrow!]! @derivedFrom(field: "pool")
-  swapHistory: [Swap!]! @derivedFrom(field: "pool")
-  usageAsCollateralHistory: [UsageAsCollateral!]! @derivedFrom(field: "pool")
-  rebalanceStableBorrowRateHistory: [RebalanceStableBorrowRate!]! @derivedFrom(field: "pool")
-  repayHistory: [Repay!]! @derivedFrom(field: "pool")
-  flashLoanHistory: [FlashLoan!]! @derivedFrom(field: "pool")
-  liquidationCallHistory: [LiquidationCall!]! @derivedFrom(field: "pool")
-  originationFeeLiquidationHistory: [OriginationFeeLiquidation!]! @derivedFrom(field: "pool")
-
-  active: Boolean!
-  paused: Boolean!
-}
-
-type PriceHistoryItem @entity {
-  id: ID!
-  asset: PriceOracleAsset!
-  price: BigInt!
-  timestamp: Int!
-}
-
-type UsdEthPriceHistoryItem @entity {
-  id: ID!
-  oracle: PriceOracle!
-  price: BigInt!
-  timestamp: Int!
-}
-
-type ChainlinkENS @entity {
-  "id is the node hash"
-  id: ID!
-  "address of the aggregator"
-  aggregatorAddress: Bytes!
-  "token address represented with this aggregator"
-  underlyingAddress: Bytes!
-  "symbol of the token represented on the aggregator"
-  symbol: String!
-}
-
-type ChainlinkAggregator @entity {
-  # aggregator address
-  id: ID!
-  oracleAsset: PriceOracleAsset!
-}
-
-enum PriceOracleAssetType {
-  Simple
-  Composite
-}
-
-enum PriceOracleAssetPlatform {
-  Simple
-  Uniswap
-}
-
-# TODO: check nomenclature
+# NOT DONE 
 type PriceOracleAsset @entity {
   # underlying asset address
   id: ID!
@@ -117,7 +20,6 @@ type PriceOracleAsset @entity {
   priceHistory: [PriceHistoryItem!]! @derivedFrom(field: "asset")
   fromChainlinkSourcesRegistry: Boolean!
 }
-
 type PriceOracle @entity {
   id: ID!
   proxyPriceProvider: Bytes!
@@ -132,253 +34,52 @@ type PriceOracle @entity {
   lastUpdateTimestamp: Int!
   version: Int!
 }
-
-type SToken @entity {
-  """
-  SToken address
-  """
+type PriceHistoryItem @entity {
   id: ID!
-  pool: Pool!
-  underlyingAssetAddress: Bytes!
-  underlyingAssetDecimals: Int!
-  tokenContractImpl: Bytes!
-}
-
-type VToken @entity {
-  """
-  VToken address
-  """
-  id: ID!
-  pool: Pool!
-  underlyingAssetAddress: Bytes!
-  underlyingAssetDecimals: Int!
-  tokenContractImpl: Bytes!
-}
-
-type AToken @entity {
-  """
-  AToken address
-  """
-  id: ID!
-  pool: Pool!
-  underlyingAssetAddress: Bytes!
-  underlyingAssetDecimals: Int!
-  tokenContractImpl: Bytes!
-}
-
-type VariableDebtToken @entity {
-  """
-  VariableDebtToken address
-  """
-  id: ID!
-  pool: Pool!
-  underlyingAssetAddress: Bytes!
-  underlyingAssetDecimals: Int!
-}
-
-type StableDebtToken @entity {
-  """
-  StableDebtToken address
-  """
-  id: ID!
-  pool: Pool!
-  underlyingAssetAddress: Bytes!
-  underlyingAssetDecimals: Int!
-}
-
-enum BorrowRateMode {
-  None
-  Stable
-  Variable
-}
-
-type Referrer @entity {
-  id: ID!
-  deposits: [Deposit!]! @derivedFrom(field: "referrer")
-  borrows: [Borrow!]! @derivedFrom(field: "referrer")
-}
-
-interface UserTransaction {
-  id: ID!
-  pool: Pool!
-  user: User!
+  asset: PriceOracleAsset!
+  price: BigInt!
   timestamp: Int!
 }
-
-type Deposit implements UserTransaction @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
+type UsdEthPriceHistoryItem @entity {
   id: ID!
-  pool: Pool!
+  oracle: PriceOracle!
+  price: BigInt!
+  timestamp: Int!
+}
+type ChainlinkENS @entity {
+  "id is the node hash"
+  id: ID!
+  "address of the aggregator"
+  aggregatorAddress: Bytes!
+  "token address represented with this aggregator"
+  underlyingAddress: Bytes!
+  "symbol of the token represented on the aggregator"
+  symbol: String!
+}
+type ChainlinkAggregator @entity {
+  # aggregator address
+  id: ID!
+  oracleAsset: PriceOracleAsset!
+}
+
+type IncentivizedAction @entity {
+  """
+  txHash
+  """
+  id: ID!
+  incentivesController: IncentivesController!
   user: User!
-  onBehalfOf: User!
-  reserve: Reserve!
-  userReserve: UserReserve!
   amount: BigInt!
-  referrer: Referrer
-  timestamp: Int!
 }
-
-# TODO: check nomenclature for new v2
-type RedeemUnderlying implements UserTransaction @entity {
+type ClaimIncentiveCall @entity {
   """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  txHash
+  """
   id: ID!
-  pool: Pool!
+  incentivesController: IncentivesController!
   user: User!
-  onBehalfOf: User!
-  reserve: Reserve!
-  userReserve: UserReserve!
   amount: BigInt!
-  timestamp: Int!
 }
-
-type Borrow implements UserTransaction @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  pool: Pool!
-  user: User!
-  onBehalfOf: User!
-  reserve: Reserve!
-  userReserve: UserReserve!
-  amount: BigInt!
-  borrowRate: BigInt!
-  borrowRateMode: BorrowRateMode!
-  referrer: Referrer
-  timestamp: Int!
-  stableTokenDebt: BigInt!
-  variableTokenDebt: BigInt!
-}
-
-type Swap implements UserTransaction @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  pool: Pool!
-  user: User!
-  reserve: Reserve!
-  userReserve: UserReserve!
-  borrowRateModeFrom: BorrowRateMode!
-  borrowRateModeTo: BorrowRateMode!
-  stableBorrowRate: BigInt!
-  variableBorrowRate: BigInt!
-  timestamp: Int!
-}
-
-type UsageAsCollateral implements UserTransaction @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  pool: Pool!
-  user: User!
-  reserve: Reserve!
-  userReserve: UserReserve!
-  fromState: Boolean!
-  toState: Boolean!
-  timestamp: Int!
-}
-
-type RebalanceStableBorrowRate implements UserTransaction @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  pool: Pool!
-  user: User!
-  reserve: Reserve!
-  userReserve: UserReserve!
-  borrowRateFrom: BigInt!
-  borrowRateTo: BigInt!
-  #accruedBorrowInterest: BigInt!
-  timestamp: Int!
-}
-
-type Repay implements UserTransaction @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  pool: Pool!
-  user: User!
-  onBehalfOf: User!
-  reserve: Reserve!
-  userReserve: UserReserve!
-  amount: BigInt!
-  timestamp: Int!
-}
-
-type FlashLoan @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  pool: Pool!
-  reserve: Reserve!
-  target: Bytes!
-  amount: BigInt!
-  totalFee: BigInt!
-  #protocolFee: BigInt!
-  initiator: User!
-  timestamp: Int!
-}
-
-type LiquidationCall implements UserTransaction @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  pool: Pool!
-  user: User!
-  collateralReserve: Reserve!
-  collateralUserReserve: UserReserve!
-  collateralAmount: BigInt!
-  principalReserve: Reserve!
-  principalUserReserve: UserReserve!
-  principalAmount: BigInt!
-  liquidator: Bytes!
-  timestamp: Int!
-}
-
-type OriginationFeeLiquidation implements UserTransaction @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  pool: Pool!
-  user: User!
-  collateralReserve: Reserve!
-  collateralUserReserve: UserReserve!
-  principalReserve: Reserve!
-  principalUserReserve: UserReserve!
-  feeLiquidated: BigInt!
-  liquidatedCollateralForFee: BigInt!
-  timestamp: Int!
-}
-
-type ReserveConfigurationHistoryItem @entity {
-  """
-  tx hash
-  """ # TODO: replace with blockNumber/timestamp + blockPosition
-  id: ID!
-  reserve: Reserve!
-  usageAsCollateralEnabled: Boolean!
-  borrowingEnabled: Boolean!
-  stableBorrowRateEnabled: Boolean!
-  isActive: Boolean!
-  isFrozen: Boolean!
-  reserveInterestRateStrategy: Bytes!
-  baseLTVasCollateral: BigInt!
-  reserveLiquidationThreshold: BigInt!
-  reserveLiquidationBonus: BigInt!
-  timestamp: Int!
-}
-
 type ReserveParamsHistoryItem @entity {
   """
   tx hash
@@ -417,7 +118,6 @@ type ReserveParamsHistoryItem @entity {
   # lifetimeStableDebFeeCollected: BigInt!
   # lifetimeVariableDebtFeeCollected: BigInt!
 }
-
 type IncentivesController @entity {
   """
   address of the incentives controller
@@ -432,25 +132,36 @@ type IncentivesController @entity {
   incentivizedActions: [IncentivizedAction!]! @derivedFrom(field: "incentivesController")
   claimIncentives: [ClaimIncentiveCall!]! @derivedFrom(field: "incentivesController")
 }
-
-type IncentivizedAction @entity {
+type SwapHistory @entity {
   """
-  txHash
+  tx hash
   """
   id: ID!
-  incentivesController: IncentivesController!
-  user: User!
-  amount: BigInt!
+  fromAsset: String!
+  toAsset: String!
+  fromAmount: BigInt!
+  receivedAmount: BigInt!
+  swapType: String!
+}  # ? diff with swap
+type StableTokenDelegatedAllowance @entity {
+  """
+  stable + fromuser address + touser address+ reserve address
+  """
+  id: ID!
+  fromUser: User!
+  toUser: User!
+  amountAllowed: BigInt!
+  userReserve: UserReserve!
 }
-
-type ClaimIncentiveCall @entity {
+type VariableTokenDelegatedAllowance @entity {
   """
-  txHash
+  variable + fromuser address + touser address+ reserve address
   """
   id: ID!
-  incentivesController: IncentivesController!
-  user: User!
-  amount: BigInt!
+  fromUser: User!
+  toUser: User!
+  amountAllowed: BigInt!
+  userReserve: UserReserve!
 }
 
 type MapAssetPool @entity {
@@ -461,7 +172,18 @@ type MapAssetPool @entity {
   pool: String!
   underlyingAsset: Bytes!
 }
-
+type WETHReserve @entity {
+  """
+  weth address
+  """
+  id: ID!
+  address: Bytes!
+  symbol: String!
+  name: String!
+  decimals: Int!
+  updatedTimestamp: Int!
+  updatedBlockNumber: BigInt!
+}
 type Reserve @entity {
   """
   Reserve address
@@ -554,19 +276,206 @@ type Reserve @entity {
   deposits: [Deposit!]! @derivedFrom(field: "reserve")
 }
 
-type WETHReserve @entity {
+type User @entity {
   """
-  weth address
+  user address
   """
-  id: ID!
-  address: Bytes!
-  symbol: String!
-  name: String!
-  decimals: Int!
-  updatedTimestamp: Int!
-  updatedBlockNumber: BigInt!
+  # id: ID!
+  # borrowedReservesCount: Int!
+
+  #incentives
+  # unclaimedRewards: BigInt!
+  # lifetimeRewards: BigInt!
+  # incentivesLastUpdated: Int!
+
+  via TX histories searches
+  # reserves: [UserReserve!]! @derivedFrom(field: "user")
+  # depositHistory: [Deposit!]! @derivedFrom(field: "user")
+  # redeemUnderlyingHistory: [RedeemUnderlying!]! @derivedFrom(field: "user")
+  # usageAsCollateralHistory: [UsageAsCollateral!]! @derivedFrom(field: "user")
+  # borrowHistory: [Borrow!]! @derivedFrom(field: "user")
+  # swapHistory: [Swap!]! @derivedFrom(field: "user")
+  # rebalanceStableBorrowRateHistory: [RebalanceStableBorrowRate!]! @derivedFrom(field: "user")
+  # repayHistory: [Repay!]! @derivedFrom(field: "user")
+  # liquidationCallHistory: [LiquidationCall!]! @derivedFrom(field: "user")
+  originationFeeLiquidationHistory: [OriginationFeeLiquidation!]! @derivedFrom(field: "user")
+  incentivizedActions: [IncentivizedAction!]! @derivedFrom(field: "user")
+  claimIncentives: [ClaimIncentiveCall!]! @derivedFrom(field: "user")
 }
 
+
+
+# DONE mostly
+interface UserTransaction {
+  id: ID!
+  pool: Pool!
+  user: User!
+  timestamp: Int!
+}
+type Deposit implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  onBehalfOf: User!
+  reserve: Reserve!
+  userReserve: UserReserve!
+  amount: BigInt!
+  referrer: Referrer
+  timestamp: Int!
+}
+type RedeemUnderlying implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  onBehalfOf: User!
+  reserve: Reserve!
+  userReserve: UserReserve!
+  amount: BigInt!
+  timestamp: Int!
+} # TODO: check nomenclature for new v2
+type Borrow implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  onBehalfOf: User!
+  reserve: Reserve!
+  userReserve: UserReserve!
+  amount: BigInt!
+  borrowRate: BigInt!
+  borrowRateMode: BorrowRateMode!
+  referrer: Referrer
+  timestamp: Int!
+  stableTokenDebt: BigInt!
+  variableTokenDebt: BigInt!
+}
+type Swap implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  reserve: Reserve!
+  userReserve: UserReserve!
+  borrowRateModeFrom: BorrowRateMode!
+  borrowRateModeTo: BorrowRateMode!
+  stableBorrowRate: BigInt!
+  variableBorrowRate: BigInt!
+  timestamp: Int!
+}
+type UsageAsCollateral implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  reserve: Reserve!
+  userReserve: UserReserve!
+  fromState: Boolean!
+  toState: Boolean!
+  timestamp: Int!
+}
+type RebalanceStableBorrowRate implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  reserve: Reserve!
+  userReserve: UserReserve!
+  borrowRateFrom: BigInt!
+  borrowRateTo: BigInt!
+  #accruedBorrowInterest: BigInt!
+  timestamp: Int!
+}
+type Repay implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  onBehalfOf: User!
+  reserve: Reserve!
+  userReserve: UserReserve!
+  amount: BigInt!
+  timestamp: Int!
+}
+# DONE 
+type FlashLoan @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  reserve: Reserve!
+  target: Bytes!
+  amount: BigInt!
+  totalFee: BigInt!
+  #protocolFee: BigInt!
+  initiator: User!
+  timestamp: Int!
+}
+type LiquidationCall implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  collateralReserve: Reserve!
+  collateralUserReserve: UserReserve!
+  collateralAmount: BigInt!
+  principalReserve: Reserve!
+  principalUserReserve: UserReserve!
+  principalAmount: BigInt!
+  liquidator: Bytes!
+  timestamp: Int!
+}
+type OriginationFeeLiquidation implements UserTransaction @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  pool: Pool!
+  user: User!
+  # collateralReserve: Reserve!
+  # collateralUserReserve: UserReserve! # just token
+  # principalReserve: Reserve!
+  principalUserReserve: UserReserve!
+  feeLiquidated: BigInt!
+  liquidatedCollateralForFee: BigInt!
+  timestamp: Int!
+}
+type ReserveConfigurationHistoryItem @entity {
+  """
+  tx hash
+  """ # TODO: replace with blockNumber/timestamp + blockPosition
+  id: ID!
+  reserve: Reserve!
+  usageAsCollateralEnabled: Boolean!
+  borrowingEnabled: Boolean!
+  stableBorrowRateEnabled: Boolean!
+  isActive: Boolean!
+  isFrozen: Boolean!
+  reserveInterestRateStrategy: Bytes!
+  baseLTVasCollateral: BigInt!
+  reserveLiquidationThreshold: BigInt!
+  reserveLiquidationBonus: BigInt!
+  timestamp: Int!
+}
+# DONE 
 type ATokenBalanceHistoryItem @entity {
   """
   userReserve + txHash
@@ -578,7 +487,6 @@ type ATokenBalanceHistoryItem @entity {
   currentATokenBalance: BigInt!
   index: BigInt!
 }
-
 type VTokenBalanceHistoryItem @entity {
   """
   userReserve + txHash
@@ -590,7 +498,6 @@ type VTokenBalanceHistoryItem @entity {
   timestamp: Int!
   index: BigInt!
 }
-
 type STokenBalanceHistoryItem @entity {
   """
   userReserve + txHash
@@ -602,43 +509,7 @@ type STokenBalanceHistoryItem @entity {
   timestamp: Int!
   avgStableBorrowRate: BigInt!
 }
-
-# TODO: not needed any more, can use borrow object and filter by user
-#type UserBorrowHistoryItem @entity {
-#  """
-#  userReserve + txHash
-#  """ # TODO: replace with blockNumber/timestamp + blockPosition
-#  id: ID!
-#  userReserve: UserReserve!
-#  totalBorrows: BigInt!
-#  borrowRate: BigInt!
-#  borrowRateMode: BorrowRateMode!
-#  #originationFee: BigInt!
-#  timestamp: Int!
-#}
-
-type StableTokenDelegatedAllowance @entity {
-  """
-  stable + fromuser address + touser address+ reserve address
-  """
-  id: ID!
-  fromUser: User!
-  toUser: User!
-  amountAllowed: BigInt!
-  userReserve: UserReserve!
-}
-
-type VariableTokenDelegatedAllowance @entity {
-  """
-  variable + fromuser address + touser address+ reserve address
-  """
-  id: ID!
-  fromUser: User!
-  toUser: User!
-  amountAllowed: BigInt!
-  userReserve: UserReserve!
-}
-
+# DONE 
 type UserReserve @entity {
   """
   user address + reserve address
@@ -672,15 +543,16 @@ type UserReserve @entity {
   Amount in currency units included as fee
   """
   lastUpdateTimestamp: Int!
+
   stableTokenDelegatedAllowances: [StableTokenDelegatedAllowance!]!
     @derivedFrom(field: "userReserve")
   variableTokenDelegatedAllowances: [VariableTokenDelegatedAllowance!]!
     @derivedFrom(field: "userReserve")
+
   aTokenBalanceHistory: [ATokenBalanceHistoryItem!]! @derivedFrom(field: "userReserve")
   vTokenBalanceHistory: [VTokenBalanceHistoryItem!]! @derivedFrom(field: "userReserve")
   sTokenBalanceHistory: [STokenBalanceHistoryItem!]! @derivedFrom(field: "userReserve")
   #borrowStateHistory: [UserBorrowHistoryItem!]! @derivedFrom(field: "userReserve")
-
   usageAsCollateralHistory: [UsageAsCollateral!]! @derivedFrom(field: "userReserve")
   depositHistory: [Deposit!]! @derivedFrom(field: "userReserve")
   redeemUnderlyingHistory: [RedeemUnderlying!]! @derivedFrom(field: "userReserve")
@@ -693,40 +565,130 @@ type UserReserve @entity {
     @derivedFrom(field: "collateralUserReserve")
 }
 
-type User @entity {
-  """
-  user address
-  """
+
+# DON'T NEED?
+  # service entity, when we receiving an event we should wknow which pool is it
+  type ContractToPoolMapping @entity {
+    # contract address
+    id: ID!
+    pool: Pool!
+  }
+  type PoolConfigurationHistoryItem @entity {
+    """
+    tx hash
+    """ # TODO: replace with blockNumber/timestamp + blockPosition
+    id: ID!
+    active: Boolean
+    pool: Pool!
+    lendingPool: Bytes
+    lendingPoolCollateralManager: Bytes
+    lendingPoolConfiguratorImpl: Bytes
+    lendingPoolImpl: Bytes
+    lendingPoolConfigurator: Bytes
+    proxyPriceProvider: Bytes
+    lendingRateOracle: Bytes
+    configurationAdmin: Bytes
+    timestamp: Int!
+  }
+  type Pool @entity {
+    id: ID!
+    protocol: Protocol!
+    lendingPool: Bytes
+    lendingPoolCollateralManager: Bytes
+    lendingPoolConfiguratorImpl: Bytes
+    lendingPoolImpl: Bytes
+    lendingPoolConfigurator: Bytes
+    proxyPriceProvider: Bytes
+    lendingRateOracle: Bytes
+    configurationAdmin: Bytes
+    ethereumAddress: Bytes
+    emergencyAdmin: Bytes
+    history: [PoolConfigurationHistoryItem!]! @derivedFrom(field: "pool")
+    lastUpdateTimestamp: Int!
+
+    reserves: [Reserve!]! @derivedFrom(field: "pool")
+    depositHistory: [Deposit!]! @derivedFrom(field: "pool")
+    redeemUnderlyingHistory: [RedeemUnderlying!]! @derivedFrom(field: "pool")
+    borrowHistory: [Borrow!]! @derivedFrom(field: "pool")
+    swapHistory: [Swap!]! @derivedFrom(field: "pool")
+    usageAsCollateralHistory: [UsageAsCollateral!]! @derivedFrom(field: "pool")
+    rebalanceStableBorrowRateHistory: [RebalanceStableBorrowRate!]! @derivedFrom(field: "pool")
+    repayHistory: [Repay!]! @derivedFrom(field: "pool")
+    flashLoanHistory: [FlashLoan!]! @derivedFrom(field: "pool")
+    liquidationCallHistory: [LiquidationCall!]! @derivedFrom(field: "pool")
+    originationFeeLiquidationHistory: [OriginationFeeLiquidation!]! @derivedFrom(field: "pool")
+
+    active: Boolean!
+    paused: Boolean!
+  }
+# DON'T NEED?
+  type SToken @entity {
+    """
+    SToken address
+    """
+    id: ID!
+    pool: Pool!
+    underlyingAssetAddress: Bytes!
+    underlyingAssetDecimals: Int!
+    tokenContractImpl: Bytes!
+  }
+  type VToken @entity {
+    """
+    VToken address
+    """
+    id: ID!
+    pool: Pool!
+    underlyingAssetAddress: Bytes!
+    underlyingAssetDecimals: Int!
+    tokenContractImpl: Bytes!
+  }
+  type AToken @entity {
+    """
+    AToken address
+    """
+    id: ID!
+    pool: Pool!
+    underlyingAssetAddress: Bytes!
+    underlyingAssetDecimals: Int!
+    tokenContractImpl: Bytes!
+  }
+
+# empty, not implemented Jan-2021
+  type VariableDebtToken @entity {
+    """
+    VariableDebtToken address
+    """
+    id: ID!
+    pool: Pool!
+    underlyingAssetAddress: Bytes!
+    underlyingAssetDecimals: Int!
+  }
+  type StableDebtToken @entity {
+    """
+    StableDebtToken address
+    """
+    id: ID!
+    pool: Pool!
+    underlyingAssetAddress: Bytes!
+    underlyingAssetDecimals: Int!
+  }
+
+# NO
+type Protocol @entity {
+  # just 1 for now
   id: ID!
-  borrowedReservesCount: Int!
-
-  #incentives
-  unclaimedRewards: BigInt!
-  lifetimeRewards: BigInt!
-  incentivesLastUpdated: Int!
-
-  reserves: [UserReserve!]! @derivedFrom(field: "user")
-  depositHistory: [Deposit!]! @derivedFrom(field: "user")
-  redeemUnderlyingHistory: [RedeemUnderlying!]! @derivedFrom(field: "user")
-  usageAsCollateralHistory: [UsageAsCollateral!]! @derivedFrom(field: "user")
-  borrowHistory: [Borrow!]! @derivedFrom(field: "user")
-  swapHistory: [Swap!]! @derivedFrom(field: "user")
-  rebalanceStableBorrowRateHistory: [RebalanceStableBorrowRate!]! @derivedFrom(field: "user")
-  repayHistory: [Repay!]! @derivedFrom(field: "user")
-  liquidationCallHistory: [LiquidationCall!]! @derivedFrom(field: "user")
-  originationFeeLiquidationHistory: [OriginationFeeLiquidation!]! @derivedFrom(field: "user")
-  incentivizedActions: [IncentivizedAction!]! @derivedFrom(field: "user")
-  claimIncentives: [ClaimIncentiveCall!]! @derivedFrom(field: "user")
+  pools: [Pool!]! @derivedFrom(field: "protocol")
 }
-
-type SwapHistory @entity {
-  """
-  tx hash
-  """
-  id: ID!
-  fromAsset: String!
-  toAsset: String!
-  fromAmount: BigInt!
-  receivedAmount: BigInt!
-  swapType: String!
+enum PriceOracleAssetType {
+  Simple
+  Composite
+}
+enum PriceOracleAssetPlatform {
+  Simple
+  Uniswap
+}
+enum BorrowRateMode {
+  None
+  Stable
+  Variable
 }
