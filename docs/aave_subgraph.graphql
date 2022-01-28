@@ -314,9 +314,7 @@ type User @entity {
   claimIncentives: [ClaimIncentiveCall!]! @derivedFrom(field: "user")
 }
 
-
-
-# DONE mostly
+# DONE 
 interface UserTransaction {
   id: ID!
   pool: Pool!

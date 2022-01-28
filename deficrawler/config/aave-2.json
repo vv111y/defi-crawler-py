@@ -20,6 +20,10 @@
           "user",
           "id"
         ],
+        "userReserve": [
+            "userReserve",
+            "id"
+        ],
         "onBehalfOf": [
             "onBehalfOf",
             "id"
@@ -73,6 +77,14 @@
         "user": [
           "user",
           "id"
+        ],
+        "userReserve": [
+            "userReserve",
+            "id"
+        ],
+        "onBehalfOf": [
+            "onBehalfOf",
+            "id"
         ],
         "token": [
           "reserve",
@@ -259,6 +271,14 @@
           "user",
           "id"
         ],
+        "userReserve": [
+            "userReserve",
+            "id"
+        ],
+        "onBehalfOf": [
+            "onBehalfOf",
+            "id"
+        ],
         "token": [
           "reserve",
           "symbol"
@@ -295,6 +315,10 @@
             ],
             "user": [
                 "user",
+                "id"
+            ],
+            "userReserve": [
+                "userReserve",
                 "id"
             ],
             "token": [
@@ -344,6 +368,10 @@
           "user",
           "id"
         ],
+        "userReserve": [
+            "userReserve",
+            "id"
+        ],
         "token": [
           "reserve",
           "symbol"
@@ -383,6 +411,10 @@
             ],
             "user": [
                 "user",
+                "id"
+            ],
+            "userReserve": [
+                "userReserve",
                 "id"
             ],
             "token": [
@@ -426,12 +458,22 @@
             "initiator",
             "id"
         ],
+        "reserve": [
+            "reserve",
+            "id"
+        ],
         "token": [
             "reserve",
             "symbol"
         ],
         "amount": [
             "amount"
+        ],
+        "target": [
+            "target"
+        ],
+        "totalFee": [
+            "totalFee"
         ],
         "timestamp": [
             "timestamp"
