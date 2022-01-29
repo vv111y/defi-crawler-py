@@ -20,10 +20,6 @@
           "user",
           "id"
         ],
-        "userReserve": [
-            "userReserve",
-            "id"
-        ],
         "onBehalfOf": [
             "onBehalfOf",
             "id"
@@ -76,10 +72,6 @@
         "user": [
           "user",
           "id"
-        ],
-        "userReserve": [
-            "userReserve",
-            "id"
         ],
         "onBehalfOf": [
             "onBehalfOf",
