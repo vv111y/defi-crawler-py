@@ -733,26 +733,6 @@
             ],
             "sIncentivesLastUpdateTimestamp": [
                 "sIncentivesLastUpdateTimestamp"
-            ],
-            "stableTokenDelegatedAllowances": [
-                "StableTokenDelegatedAllowance",
-                "id",
-                "StableTokenDelegatedAllowance",
-                "fromUser",
-                "StableTokenDelegatedAllowance",
-                "toUser",
-                "StableTokenDelegatedAllowance",
-                "amountAllowed"
-            ],
-            "variableTokenDelegatedAllowances": [
-                "VariableTokenDelegatedAllowance",
-                "id",
-                "VariableTokenDelegatedAllowance",
-                "fromUser",
-                "VariableTokenDelegatedAllowance",
-                "toUser",
-                "VariableTokenDelegatedAllowance",
-                "amountAllowed"
             ]
         },
         "query": {
