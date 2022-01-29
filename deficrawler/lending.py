@@ -190,7 +190,6 @@ class Lending(ProtocolBase):
             config=config
         )
         
-
     def supported_entities(self):
         """
         Returns the supported entities for the protocol
