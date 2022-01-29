@@ -772,14 +772,10 @@
             ]
         },
         "query": {
-            "name": "aTokenBalanceHistoryItems",
+            "name": "atokenBalanceHistoryItems",
             "extra_fields": {
                 "userReserve": [
                     "userReserve"
-                ],
-                "decimals": [
-                    "reserve",
-                    "decimals"
                 ]
             },
             "params": {
@@ -808,25 +804,21 @@
                 "id"
             ],
 
-            "scaledATokenBalance":[
-                "scaledATokenBalance"
+            "scaledVTokenBalance":[
+                "scaledVariableDebt"
             ],
             "currentATokenBalance":[
-                "currentATokenBalance"
+                "currentVariableDebt"
             ],
             "timestamp": [
                 "timestamp"
             ]
         },
         "query": {
-            "name": "vTokenBalanceHistoryItems",
+            "name": "vtokenBalanceHistoryItems",
             "extra_fields": {
                 "userReserve": [
                     "userReserve"
-                ],
-                "decimals": [
-                    "reserve",
-                    "decimals"
                 ]
             },
             "params": {
@@ -855,25 +847,21 @@
                 "id"
             ],
 
-            "scaledATokenBalance":[
-                "scaledATokenBalance"
+            "principalStableDebt":[
+                "principalStableDebt"
             ],
-            "currentATokenBalance":[
-                "currentATokenBalance"
+            "currentStableDebt":[
+                "currentStableDebt"
             ],
             "timestamp": [
                 "timestamp"
             ]
         },
         "query": {
-            "name": "sTokenBalanceHistoryItems",
+            "name": "stokenBalanceHistoryItems",
             "extra_fields": {
                 "userReserve": [
                     "userReserve"
-                ],
-                "decimals": [
-                    "reserve",
-                    "decimals"
                 ]
             },
             "params": {
