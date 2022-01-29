@@ -60,8 +60,7 @@
         },
         "name": "borrows",
         "params": {
-          "orderBy": "timestamp",
-          "user": "user"
+          "orderBy": "timestamp"
         }
       },
       "transformations": {
@@ -348,7 +347,7 @@
                     "decimals"
                 ]
             },
-            "name": "Swaps",
+            "name": "swaps",
             "params": {
                 "orderBy": "timestamp",
                 "user": "user"
@@ -393,7 +392,7 @@
             "decimals"
           ]
         },
-        "name": "UsageAsCollaterals",
+        "name": "usageAsCollaterals",
         "params": {
           "orderBy": "timestamp",
           "user": "user"
@@ -663,9 +662,6 @@
             "id": [
                 "id"
             ],
-            "last_update":[
-                "lastUpdateTimestamp"
-            ],
             "user_id": [
                 "user",
                 "id"
@@ -677,6 +673,9 @@
             "reserve_id": [
                 "reserve",
                 "id"
+            ],
+            "last_update":[
+                "lastUpdateTimestamp"
             ],
             "usageAsCollateralEnabledOnUser": [
                 "usageAsCollateralEnabledOnUser"
@@ -761,14 +760,10 @@
             "extra_fields": {
             },
             "params": {
-                "user": "user",
-                "initial_value": "0",
-                "orderBy": "id"
+                "orderBy": "lastUpdateTimestamp"
             }
         },
         "transformations": {
-            "StableTokenDelegatedAllowance": "transfer_list",
-            "VariableTokenDelegatedAllowance": "transfer_list"
         }
     },
     "aTokenBalanceHistoryItems": {
