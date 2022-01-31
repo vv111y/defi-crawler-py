@@ -178,9 +178,7 @@ class Lending(ProtocolBase):
         """Returns all user reserves."""
 
         config = super().get_protocol_config('user_reserves')
-        # user_name = self.mappings_file['entities']['user_reserves']['query']['params']['user']
 
-            # filters={user_name: user}
         response_data = super().query_data_parameter(
             entity='user_reserves',
         )
@@ -189,7 +187,31 @@ class Lending(ProtocolBase):
             response_data=response_data,
             config=config
         )
-        
+
+    def get_entity_data(self, entity, filter=None, smallbatch=False):
+        """Returns data from an entity that has no timestamp"""
+
+        config = super().get_protocol_config(entity)
+
+        if filter:
+            response_data = super().query_data_filtered(
+                entity=entity,
+                filters=filter,
+                smallbatch=smallbatch
+            )
+
+        else:
+
+            response_data = super().query_data_parameter(
+                entity=entity,
+                smallbatch=smallbatch
+            )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+
     def supported_entities(self):
         """
         Returns the supported entities for the protocol
