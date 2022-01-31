@@ -29,9 +29,32 @@ class Querys:
             }}
         """
 
+    QUERY_ALL_ELEMENTS_SMALL = """ {{
+            {entity_name}(
+                    first: 9
+                    orderBy: {order_by}
+                    orderDirection: asc
+                ){{
+                    {attributes}
+                }}
+            }}
+        """
+
     QUERY_ELEMENT_FILTER = """ {{
             {entity_name}(
                     first: 1000
+                    where: {{
+                        {filters}
+                    }}
+                ){{
+                    {attributes}
+                }}
+            }}
+        """
+
+    QUERY_ELEMENT_FILTER_SMALL = """ {{
+            {entity_name}(
+                    first: 9
                     where: {{
                         {filters}
                     }}

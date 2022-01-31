@@ -15,7 +15,9 @@ class ProtocolBase:
         self.protocol = protocol
         self.query_from_timestamp = Querys.QUERY_FROM_TIMESTAMP
         self.query_all_elements = Querys.QUERY_ALL_ELEMENTS
+        self.query_all_elements_small = Querys.QUERY_ALL_ELEMENTS_SMALL
         self.query_filter = Querys.QUERY_ELEMENT_FILTER
+        self.query_filter_small = Querys.QUERY_ELEMENT_FILTER_SMALL
         self.query_first = Querys.QUERY_FIRST_ELEMENT
         self.mappings_file = self.__get_protocol_file(protocol, version, chain)
         self.chain = chain
@@ -36,22 +38,32 @@ class ProtocolBase:
                              endpoint=self.endpoint,
                              aditional_filters=aditional_filters)
 
-    def query_data_parameter(self, entity):
+    def query_data_parameter(self, entity, smallbatch=False):
         """
         Gets all the existing data for the given entity
         """
 
-        return get_data_parameter(query_input=self.query_all_elements,
+        if smallbatch:
+            query = self.query_all_elements_small
+        else:
+            query = self.query_all_elements
+
+        return get_data_parameter(query_input=query,
                                   entity=entity,
                                   mappings_file=self.mappings_file,
                                   endpoint=self.endpoint)
 
-    def query_data_filtered(self, entity, filters):
+    def query_data_filtered(self, entity, filters, smallbatch=False):
         """
         Gets all the existing data for the given entity with the specified filters
         """
 
-        return get_data_filtered(query_input=self.query_filter,
+        if smallbatch:
+            query = self.query_filter_small
+        else:
+            query = self.query_filter
+
+        return get_data_filtered(query_input=query,
                                  entity=entity,
                                  mappings_file=self.mappings_file,
                                  endpoint=self.endpoint,

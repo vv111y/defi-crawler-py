@@ -147,6 +147,7 @@ def call_api(endpoint, query):
     Returns the data from the api, if there is any error throws
     """
 
+    # TODO httpx 
     response = requests.post(endpoint, json={'query': query})
     json_data = json.loads(response.text)
     if 'errors' in json_data:
