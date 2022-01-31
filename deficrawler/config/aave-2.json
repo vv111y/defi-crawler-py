@@ -203,7 +203,7 @@
             "decimals"
           ]
         },
-        "name": "OriginationFeeLiquidation",
+        "name": "originationFeeLiquidations",
         "params": {
           "orderBy": "timestamp",
           "user": "user"
@@ -429,10 +429,10 @@
                     "decimals"
                 ]
             },
-            "name": "RebalanceStableBorrowRates",
+            "name": "rebalanceStableBorrowRates",
             "params": {
                 "orderBy": "timestamp",
-                "user": "user"
+                "initial_value": 0
             }
         },
         "transformations": {
@@ -613,42 +613,6 @@
         "debt_amount": "decimals"
       }
     },
-    "user_history": {
-        "attributes": {
-            "user_reserve_id": [
-                "id"
-            ],
-            "last_update": [
-                "lastUpdateTimestamp"
-            ],
-            "user_id": [
-                "user",
-                "id"
-            ],
-            "aTokenBalanceHistory": [
-                "aTokenBalanceHistory",
-                "currentATokenBalance",
-                "aTokenBalanceHistory",
-                "timestamp"
-            ]
-        },
-        "query": {
-            "name": "userReserves",
-            "extra_fields": {
-                "aTokenBalanceHistory": [
-                    "aTokenBalanceHistory"
-                ]
-            },
-            "params": {
-                "user": "user",
-                "initial_value": "0",
-                "orderBy": "timestamp"
-            }
-        },
-        "transformations": {
-            "aTokenBalanceHistory": "transfer_list"
-        }
-    },
     "user_reserves": {
         "attributes": {
             "id": [
@@ -779,6 +743,84 @@
         "transformations": {
             "amount": "decimals",
             "tx_id": "tx_id_colon"
+        }
+    },
+    "stableTokenDelegatedAllowances": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "fromUser": [
+                "fromUser",
+                "id"
+            ],
+            "toUser": [
+                "toUser",
+                "id"
+            ],
+            "amountAllowed": [
+                "amountAllowed"
+            ]
+        },
+        "query": {
+            "name": "stableTokenDelegatedAllowances",
+            "extra_fields": {
+            },
+            "params": {
+                "first": "9",
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "id": "tx_id_colon",
+            "user_reserve_id": "tx_id_colon",
+            "fromUser_id": "tx_id_colon",
+            "toUser_id": "tx_id_colon"
+        }
+    },
+    "variableTokenDelegatedAllowances": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "fromUser": [
+                "fromUser",
+                "id"
+            ],
+            "toUser": [
+                "toUser",
+                "id"
+            ],
+            "amountAllowed": [
+                "amountAllowed"
+            ]
+        },
+        "query": {
+            "name": "variableTokenDelegatedAllowances",
+            "extra_fields": {
+            },
+            "params": {
+                "first": "9",
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "id": "tx_id_colon",
+            "user_reserve_id": "tx_id_colon",
+            "fromUser_id": "tx_id_colon",
+            "toUser_id": "tx_id_colon"
         }
     },
     "vTokenBalanceHistoryItems": {
@@ -914,7 +956,7 @@
             "decimals"
           ]
         },
-        "name": "ReserveConfigurationHistoryItems",
+        "name": "reserveConfigurationHistoryItems",
         "params": {
           "orderBy": "timestamp",
           "user": "user"
@@ -943,7 +985,7 @@
       "query": {
         "extra_fields": {
         },
-        "name": "PriceHistoryItems",
+        "name": "priceHistoryItems",
         "params": {
           "orderBy": "timestamp"
         }
@@ -971,7 +1013,7 @@
         "query": {
             "extra_fields": {
             },
-            "name": "UsdEthPriceHistoryItems",
+            "name": "usdEthPriceHistoryItems",
             "params": {
                 "orderBy": "timestamp"
             }
@@ -1022,7 +1064,7 @@
       "query": {
         "extra_fields": {
         },
-        "name": "PriceOracleAssets",
+        "name": "priceOracleAssets",
         "params": {
           "orderBy": "lastUpdateTimestamp"
         }
@@ -1086,7 +1128,7 @@
       "query": {
         "extra_fields": {
         },
-        "name": "PriceOracles",
+        "name": "priceOracles",
         "params": {
           "orderBy": "lastUpdateTimestamp"
         }

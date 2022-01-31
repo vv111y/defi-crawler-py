@@ -154,26 +154,6 @@ type SwapHistory @entity {
   receivedAmount: BigInt!
   swapType: String!
 }  # ? diff with swap
-type StableTokenDelegatedAllowance @entity {
-  """
-  stable + fromuser address + touser address+ reserve address
-  """
-  id: ID!
-  fromUser: User!
-  toUser: User!
-  amountAllowed: BigInt!
-  userReserve: UserReserve!
-}
-type VariableTokenDelegatedAllowance @entity {
-  """
-  variable + fromuser address + touser address+ reserve address
-  """
-  id: ID!
-  fromUser: User!
-  toUser: User!
-  amountAllowed: BigInt!
-  userReserve: UserReserve!
-}
 
 type MapAssetPool @entity {
   """
@@ -572,6 +552,27 @@ type UserReserve @entity {
   liquidationCallHistory: [LiquidationCall!]! @derivedFrom(field: "collateralUserReserve")
   originationFeeLiquidationHistory: [OriginationFeeLiquidation!]!
     @derivedFrom(field: "collateralUserReserve")
+}
+# DONE 
+type StableTokenDelegatedAllowance @entity {
+  """
+  stable + fromuser address + touser address+ reserve address
+  """
+  id: ID!
+  fromUser: User!
+  toUser: User!
+  amountAllowed: BigInt!
+  userReserve: UserReserve!
+}
+type VariableTokenDelegatedAllowance @entity {
+  """
+  variable + fromuser address + touser address+ reserve address
+  """
+  id: ID!
+  fromUser: User!
+  toUser: User!
+  amountAllowed: BigInt!
+  userReserve: UserReserve!
 }
 
 
