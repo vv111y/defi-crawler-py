@@ -397,6 +397,80 @@
 
         }
     },
+    "accountCTokens": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "market": [
+                "market",
+                "id"
+            ],
+            "symbol": [
+                "symbol"
+            ],
+            "account": [
+                "account",
+                "id"
+            ],
+            "transactions": [
+                "transactions",
+                "id"
+            ],
+            "accrualBlockNumber": [
+                "accrualBlockNumber"
+            ],
+            "enteredMarket": [
+                "enteredMarket"
+            ],
+            "cTokenBalance": [
+                "cTokenBalance"
+            ],
+            "totalUnderlyingSupplied": [
+                "totalUnderlyingSupplied"
+            ],
+            "totalUnderlyingRedeemed": [
+                "totalUnderlyingRedeemed"
+            ],
+            "accountBorrowIndex": [
+                "accountBorrowIndex"
+            ],
+            "totalUnderlyingBorrowed": [
+                "totalUnderlyingBorrowed"
+            ],
+            "totalUnderlyingRepaid": [
+                "totalUnderlyingRepaid"
+            ],
+            "storedBorrowBalance": [
+                "storedBorrowBalance"
+            ],
+            "supplyBalanceUnderlying": [
+                "supplyBalanceUnderlying"
+            ],
+            "lifetimeSupplyInterestAccrued": [
+                "lifetimeSupplyInterestAccrued"
+            ],
+            "borrowBalanceUnderlying": [
+                "borrowBalanceUnderlying"
+            ],
+            "lifetimeBorrowInterestAccrued": [
+                "lifetimeBorrowInterestAccrued"
+            ]
+        },
+        "query": {
+            "name": "accountCTokens",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "blockTimestamp",
+                "asset": "id",
+                "block": true
+            }
+
+        },
+        "transformations": {
+            "transactions": "transfer_list"
+        }
+    },
     }
   }
 }
