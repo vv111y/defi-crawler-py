@@ -368,6 +368,35 @@
         },
         "transformations": {}
     },
+    "accounts": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "countLiquidated": [
+                "countLiquidated"
+            ],
+            "countLiquidator": [
+                "countLiquidator"
+            ],
+            "hasBorrowed": [
+                "hasBorrowed"
+            ]
+        },
+        "query": {
+            "name": "accounts",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "blockTimestamp",
+                "asset": "id",
+                "block": true
+            }
+
+        },
+        "transformations": {
+
+        }
+    },
     }
   }
 }
