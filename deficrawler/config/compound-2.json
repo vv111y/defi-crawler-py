@@ -339,6 +339,35 @@
                 "underlyingDecimals"
             ]
         },
+    "comptrollers": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "priceOracle": [
+                "priceOracle"
+            ],
+            "closeFactor": [
+                "closeFactor"
+            ],
+            "liquidationIncentive": [
+                "liquidationIncentive"
+            ],
+            "maxAssets": [
+                "maxAssets"
+            ]
+        },
+        "query": {
+            "name": "comptrollers",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "blockTimestamp",
+                "asset": "id",
+                "block": true
+            }
+        },
+        "transformations": {}
+    },
     }
   }
 }
