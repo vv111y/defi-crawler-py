@@ -270,6 +270,75 @@
         "stable_borrow_rate": "rates_na",
         "supply_rate": "rates_units_comp"
       }
+    "markets": {
+        "attributes": {
+            "borrowRate": [
+                "borrowRate"
+            ],
+            "cash": [
+                "cash"
+            ],
+            "collateralFactor": [
+                "collateralFactor"
+            ],
+            "exchangeRate":  [
+                "exchangeRate"
+            ],
+            "interestRateModelAddress": [
+                "interestRateModelAddress"
+            ],
+            "name": [
+                "name"
+            ],
+            "reserves": [
+                "reserves"
+            ],
+            "supplyRate": [
+                "supplyRate"
+            ],
+            "symbol": [
+                "symbol"
+            ],
+            "id": [
+                "id"
+            ],
+            "totalBorrows": [
+                "totalBorrows"
+            ],
+            "totalSupply": [
+                "totalSupply"
+            ],
+            "underlyingAddress": [
+                "underlyingAddress"
+            ],
+            "underlyingName": [
+                "underlyingName"
+            ],
+            "underlyingPrice": [
+                "underlyingPrice"
+            ],
+            "underlyingSymbol": [
+                "underlyingSymbol"
+            ],
+            "accrualBlockNumber": [
+                "accrualBlockNumber"
+            ],
+            "blockTimestamp": [
+                "blockTimestamp"
+            ],
+            "borrowIndex": [
+                "borrowIndex"
+            ],
+            "reserveFactor": [
+                "reserveFactor"
+            ],
+            "underlyingPriceUSD": [
+                "underlyingPriceUSD"
+            ],
+            "underlyingDecimals": [
+                "underlyingDecimals"
+            ]
+        },
     }
   }
 }
