@@ -471,6 +471,37 @@
             "transactions": "transfer_list"
         }
     },
+
+    "accountCTokenTransactions": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "account": [
+                "account",
+                "id"
+            ],
+            "tx_hash": [
+                "tx_hash"
+            ],
+            "timestamp": [
+                "timestamp"
+            ],
+            "block": [
+                "block"
+            ],
+            "logIndex": [
+                "logIndex"
+            ]
+        },
+        "query": {
+            "name": "accountCTokenTransactions",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {}
     }
   }
 }
