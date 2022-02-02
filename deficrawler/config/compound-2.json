@@ -233,6 +233,8 @@
         "name": "accountCTokens",
         "extra_fields": {},
         "params": {
+          "orderBy": "id",
+          "initial_value": "0",
           "user": "account"
         }
       },
@@ -270,6 +272,7 @@
         "stable_borrow_rate": "rates_na",
         "supply_rate": "rates_units_comp"
       }
+    },
     "markets": {
         "attributes": {
             "borrowRate": [
@@ -339,6 +342,17 @@
                 "underlyingDecimals"
             ]
         },
+        "query": {
+            "name": "markets",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "blockTimestamp",
+                "asset": "id",
+                "block": true
+            }
+        },
+        "transformations": {}
+    },
     "comptrollers": {
         "attributes": {
             "id": [
