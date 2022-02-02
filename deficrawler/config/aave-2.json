@@ -168,19 +168,21 @@
           "user",
           "id"
         ],
-        "token_principal": [
-          "principalReserve",
-          "symbol"
-        ],
-        "token_collateral": [
+        "collateralReserve": [
           "collateralReserve",
-          "symbol"
+          "id"
         ],
-        "amount_principal": [
-          "principalAmount"
+        "collateralUserReserve": [
+          "collateralUserReserve",
+          "id"
         ],
-        "amount_collateral": [
-          "collateralAmount"
+        "principalReserve": [
+          "principalReserve",
+          "id"
+        ],
+        "principalUserReserve": [
+          "principalUserReserve",
+          "id"
         ],
         "feeLiquidated": [
           "feeLiquidated"
@@ -909,7 +911,7 @@
             "tx_id": "tx_id_colon"
         }
     },
-    "ReserveConfigurationHistoryItem": {
+    "reserveConfigurationHistoryItems": {
       "attributes": {
         "tx_id": [
           "id"
@@ -967,16 +969,17 @@
         "tx_id": "tx_id_colon"
       }
     },
-    "PriceHistoryItem": {
+    "priceHistoryItems": {
       "attributes": {
-        "tx_id": [
+        "id": [
           "id"
         ],
         "price": [
           "price"
         ],
         "PriceOracleAsset": [
-            "PriceOracleAsset"
+            "asset",
+            "id"
         ],
         "timestamp": [
           "timestamp"
@@ -994,7 +997,7 @@
         "tx_id": "tx_id_colon"
       }
     },
-    "UsdEthPriceHistoryItem": {
+    "usdEthPriceHistoryItems": {
         "attributes": {
             "tx_id": [
                 "id"
@@ -1002,8 +1005,8 @@
             "price": [
                 "price"
             ],
-            "PriceOracle": [
-                "PriceOracle",
+            "oracle": [
+                "oracle",
                 "id"
             ],
             "timestamp": [
@@ -1022,13 +1025,13 @@
             "tx_id": "tx_id_colon"
         }
     },
-    "PriceOracleAsset": {
+    "priceOracleAssets": {
       "attributes": {
-        "tx_id": [
+        "id": [
           "id"
         ],
         "PriceOracle ": [
-            "PriceOracle",
+            "oracle",
             "id"
         ],
         "priceInEth": [
@@ -1050,10 +1053,6 @@
             "dependentAssets",
             "id"
         ],
-        "priceHistory": [
-            "priceHistory",
-            "id"
-        ],
         "fromChainlinkSourcesRegistry": [
             "fromChainlinkSourcesRegistry"
         ],
@@ -1070,23 +1069,16 @@
         }
       },
       "transformations": {
-        "amount": "decimals",
-        "dependentAssets": "transfer_list",
-        "priceHistory": "transfer_list",
-        "tx_id": "tx_id_colon"
+        "dependentAssets": "transfer_list"
       }
     },
-    "PriceOracle": {
+    "priceOracles": {
       "attributes": {
-        "tx_id": [
+        "id": [
           "id"
         ],
         "version": [
             "version"
-        ],
-        "PriceOracle ": [
-            "PriceOracle",
-            "id"
         ],
         "proxyPriceProvider": [
             "proxyPriceProvider"
@@ -1115,12 +1107,6 @@
             "tokensWithFallback",
             "id"
         ],
-        "usdPriceEthHistory": [
-            "usdPriceEthHistory"
-        ],
-        "fromChainlinkSourcesRegistry": [
-            "fromChainlinkSourcesRegistry"
-        ],
         "lastUpdateTimestamp": [
           "lastUpdateTimestamp"
         ]
@@ -1134,9 +1120,7 @@
         }
       },
       "transformations": {
-        "usdDependentAssets": "transfer_list",
-        "priceHistory": "transfer_list",
-        "tx_id": "tx_id_colon"
+        "usdDependentAssets": "transfer_list"
       }
     }
 

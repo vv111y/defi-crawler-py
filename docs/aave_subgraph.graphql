@@ -439,9 +439,9 @@ type OriginationFeeLiquidation implements UserTransaction @entity {
   id: ID!
   pool: Pool!
   user: User!
-  # collateralReserve: Reserve!
-  # collateralUserReserve: UserReserve! # just token
-  # principalReserve: Reserve!
+  collateralReserve: Reserve!
+  collateralUserReserve: UserReserve! # just token
+  principalReserve: Reserve!
   principalUserReserve: UserReserve!
   feeLiquidated: BigInt!
   liquidatedCollateralForFee: BigInt!
