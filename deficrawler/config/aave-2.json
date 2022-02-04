@@ -889,7 +889,7 @@
             ],
 
             "PriceOracleAsset": [
-                "priceOracleAsset",
+                "price",
                 "id"
             ],
             "AToken": [
