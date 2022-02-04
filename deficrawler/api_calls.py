@@ -42,6 +42,44 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
 
     return json_records
 
+def get_data_batch(query_input, entity, mappings_file, endpoint, aditional_filters=""):
+    """
+    Gets all the existing data from the subgraph at the given time range.
+    One or mor filters can be passed as parameters and will be applied in the where clause
+    """
+    are_data = True
+    json_records = []
+    n = 1000
+    start = 0
+
+    entity_name = mappings_file['entities'][entity]['query']['name']
+    order_by = mappings_file['entities'][entity]['query']['params']['orderBy']
+    attributes = get_attributes(entity, mappings_file)
+    filters_str = get_filters(aditional_filters)
+
+    while are_data:
+        query = query_input.format(
+            entity_name=entity_name,
+            order_by=order_by,
+            n=n,
+            start=start,
+            attributes=attributes,
+            aditional_filters=filters_str
+        )
+
+        json_data = call_api(endpoint=endpoint, query=query)
+
+        response_lenght = len(json_data['data'][entity_name])
+        if (response_lenght > 0):
+            list_data = json_data['data'][entity_name]
+            start += n
+
+            json_records = [*json_records, *list_data]
+        else:
+            are_data = False
+
+    return json_records
+
 
 def get_data_parameter(query_input, entity, mappings_file, endpoint):
     """

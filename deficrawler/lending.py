@@ -48,6 +48,29 @@ class Lending(ProtocolBase):
             config=config
         )
 
+    def get_data_bagch(self, entity, user='', smallbatch=False):
+        """
+        Gets data for the specified entity in the from_data to to_date period.
+        The entities are defined in the configuration of each protocol.
+        """
+
+        config = super().get_protocol_config(entity)
+
+        aditional_filters = self.__get_aditional_filters__(
+            user=user, entity=entity
+        )
+
+        response_data = super().query_data_batch(
+            entity=entity,
+            aditional_filters=aditional_filters,
+            smallbatch=smallbatch
+        )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+
     def get_rates_from_date_range(self, from_date, to_date, entity, asset):
         """
         Gets rates data for the specified entity in the from_data to to_date period.

@@ -95,3 +95,20 @@ class Querys:
                 }}
             }}
         """
+
+    QUERY_BATCH = """{{
+                {entity_name}(
+                            first: {n}
+                            skip: {start}
+                            orderBy: {order_by}
+                            orderDirection: asc
+                            where: {{
+                                {order_by}_gt: {from_timestamp}
+                                {order_by}_lte: {to_timestamp}
+                                {aditional_filters}
+                            }}
+                        ){{
+                        {attributes}
+                    }}
+                    }}
+                """

@@ -15,6 +15,7 @@ class ProtocolBase:
         self.protocol = protocol
         self.query_from_timestamp = Querys.QUERY_FROM_TIMESTAMP
         self.query_from_timestamp_small = Querys.QUERY_FROM_TIMESTAMP_SMALL
+        self.query_batch = Querys.QUERY_BATCH 
         self.query_all_elements = Querys.QUERY_ALL_ELEMENTS
         self.query_all_elements_small = Querys.QUERY_ALL_ELEMENTS_SMALL
         self.query_filter = Querys.QUERY_ELEMENT_FILTER
@@ -39,6 +40,22 @@ class ProtocolBase:
         return get_data_from(query_input=query,
                              from_timestamp=from_timestamp,
                              to_timestamp=to_timestamp,
+                             entity=entity,
+                             mappings_file=self.mappings_file,
+                             endpoint=self.endpoint,
+                             aditional_filters=aditional_filters)
+
+    def query_data_batch(self, entity, aditional_filters='', smallbatch=False):
+        """
+        Gets all the data from the given entity and the specified period. One or more filters can be applied
+        """
+
+        if smallbatch:
+            query = self.query_batch
+        else:
+            query = self.query_batch
+
+        return get_data_from(query_input=query,
                              entity=entity,
                              mappings_file=self.mappings_file,
                              endpoint=self.endpoint,
