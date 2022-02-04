@@ -704,6 +704,219 @@
         "transformations": {
         }
     },
+    "reserves": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "underlyingAsset": [
+                "underlyingAsset"
+            ],
+            "pool": [
+                "pool",
+                "id"
+            ],
+            "symbol": [
+                "symbol"
+            ],
+            "name": [
+                "name"
+            ],
+            "decimals": [
+                "decimals"
+            ],
+            "usageAsCollateralEnabled": [
+                "usageAsCollateralEnabled"
+            ],
+            "borrowingEnabled": [
+                "borrowingEnabled"
+            ],
+            "stableBorrowRateEnabled": [
+                "stableBorrowRateEnabled"
+            ],
+            "isActive": [
+                "isActive"
+            ],
+            "isFrozen": [
+                "isFrozen"
+            ],
+            "reserveInterestRateStrategy": [
+                "reserveInterestRateStrategy"
+            ],
+            "optimalUtilisationRate": [
+                "optimalUtilisationRate"
+            ],
+            "variableRateSlope1": [
+                "variableRateSlope1"
+            ],
+            "variableRateSlope2": [
+                "variableRateSlope2"
+            ],
+            "stableRateSlope1": [
+                "stableRateSlope1"
+            ],
+            "stableRateSlope2": [
+                "stableRateSlope2"
+            ],
+            "baseVariableBorrowRate": [
+                "baseVariableBorrowRate"
+            ],
+            "baseLTVasCollateral": [
+                "baseLTVasCollateral"
+            ],
+            "reserveLiquidationThreshold": [
+                "reserveLiquidationThreshold"
+            ],
+            "reserveLiquidationBonus": [
+                "reserveLiquidationBonus"
+            ],
+            "utilizationRate": [
+                "utilizationRate"
+            ],
+            "totalLiquidity": [
+                "totalLiquidity"
+            ],
+            "totalATokenSupply": [
+                "totalATokenSupply"
+            ],
+            "totalLiquidityAsCollateral": [
+                "totalLiquidityAsCollateral"
+            ],
+            "availableLiquidity": [
+                "availableLiquidity"
+            ],
+            "totalPrincipalStableDebt": [
+                "totalPrincipalStableDebt"
+            ],
+            "totalScaledVariableDebt": [
+                "totalScaledVariableDebt"
+            ],
+            "totalCurrentVariableDebt": [
+                "totalCurrentVariableDebt"
+            ],
+            "totalDeposits": [
+                "totalDeposits"
+            ],
+            "liquidityRate": [
+                "liquidityRate"
+            ],
+            "averageStableRate": [
+                "averageStableRate"
+            ],
+            "variableBorrowRate": [
+                "variableBorrowRate"
+            ],
+            "stableBorrowRate": [
+                "stableBorrowRate"
+            ],
+            "liquidityIndex": [
+                "liquidityIndex"
+            ],
+            "variableBorrowIndex": [
+                "variableBorrowIndex"
+            ],
+            "reserveFactor": [
+                "reserveFactor"
+            ],
+            "lastUpdateTimestamp": [
+                "lastUpdateTimestamp"
+            ],
+            "stableDebtLastUpdateTimestamp": [
+                "stableDebtLastUpdateTimestamp"
+            ],
+            "aEmissionPerSecond": [
+                "aEmissionPerSecond"
+            ],
+            "vEmissionPerSecond": [
+                "vEmissionPerSecond"
+            ],
+            "sEmissionPerSecond": [
+                "sEmissionPerSecond"
+            ],
+            "aTokenIncentivesIndex": [
+                "aTokenIncentivesIndex"
+            ],
+            "vTokenIncentivesIndex": [
+                "vTokenIncentivesIndex"
+            ],
+            "sTokenIncentivesIndex": [
+                "sTokenIncentivesIndex"
+            ],
+            "aIncentivesLastUpdateTimestamp": [
+                "aIncentivesLastUpdateTimestamp"
+            ],
+            "vIncentivesLastUpdateTimestamp": [
+                "vIncentivesLastUpdateTimestamp"
+            ],
+            "sIncentivesLastUpdateTimestamp": [
+                "sIncentivesLastUpdateTimestamp"
+            ],
+            "lifetimeLiquidity": [
+                "lifetimeLiquidity"
+            ],
+            "lifetimePrincipalStableDebt": [
+                "lifetimePrincipalStableDebt"
+            ],
+            "lifetimeScaledVariableDebt": [
+                "lifetimeScaledVariableDebt"
+            ],
+            "lifetimeCurrentVariableDebt": [
+                "lifetimeCurrentVariableDebt"
+            ],
+            "lifetimeRepayments": [
+                "lifetimeRepayments"
+            ],
+            "lifetimeWithdrawals": [
+                "lifetimeWithdrawals"
+            ],
+            "lifetimeBorrows": [
+                "lifetimeBorrows"
+            ],
+            "lifetimeLiquidated": [
+                "lifetimeLiquidated"
+            ],
+            "lifetimeFlashLoans": [
+                "lifetimeFlashLoans"
+            ],
+            "lifetimeFlashLoanPremium": [
+                "lifetimeFlashLoanPremium"
+            ],
+            "lifetimeDepositorsInterestEarned": [
+                "lifetimeDepositorsInterestEarned"
+            ],
+            "lifetimeReserveFactorAccrued": [
+                "lifetimeReserveFactorAccrued"
+            ],
+
+            "PriceOracleAsset": [
+                "priceOracleAsset",
+                "id"
+            ],
+            "AToken": [
+                "aToken",
+                "id"
+            ],
+            "VToken": [
+                "vToken",
+                "id"
+            ],
+            "SToken": [
+                "sToken",
+                "id"
+            ]
+        },
+        "query": {
+            "name": "reserves",
+            "extra_fields": {},
+            "params": {
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {
+
+        }
+    },
     "aTokenBalanceHistoryItems": {
         "attributes": {
             "tx_id": [
