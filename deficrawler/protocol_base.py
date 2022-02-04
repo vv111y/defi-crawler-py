@@ -1,6 +1,6 @@
 from deficrawler.querys import Querys
 from deficrawler.mappers import Mappers
-from deficrawler.api_calls import get_data_from, get_data_parameter, get_data_filtered, get_first_element
+from deficrawler.api_calls import get_data_from, get_data_batch, get_data_parameter, get_data_filtered, get_first_element
 
 import pkgutil
 import json
@@ -55,7 +55,7 @@ class ProtocolBase:
         else:
             query = self.query_batch
 
-        return get_data_from(query_input=query,
+        return get_data_batch(query_input=query,
                              entity=entity,
                              mappings_file=self.mappings_file,
                              endpoint=self.endpoint,
