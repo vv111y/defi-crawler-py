@@ -427,10 +427,6 @@
                 "account",
                 "id"
             ],
-            "transactions": [
-                "transactions",
-                "id"
-            ],
             "accrualBlockNumber": [
                 "accrualBlockNumber"
             ],
@@ -481,9 +477,7 @@
             }
 
         },
-        "transformations": {
-            "transactions": "transfer_list"
-        }
+        "transformations": { }
     },
 
     "accountCTokenTransactions": {
