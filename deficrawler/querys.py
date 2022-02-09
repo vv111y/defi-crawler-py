@@ -97,14 +97,15 @@ class Querys:
         """
 
     QUERY_BATCH = """{{
-                {entity_name}(
-                            first: {n}
-                            skip: {start}
-                            where: {{
-                                {aditional_filters}
-                            }}
-                        ){{
-                        {attributes}
+            {entity_name}(
+                    first: 1000
+                    orderBy: {order_by}
+                    orderDirection: asc
+                    where: {{
+                        {order_by}_gt: "{filter_value}"
                     }}
-                    }}
-                """
+                ){{
+                    {attributes}
+                }}
+            }}
+        """
