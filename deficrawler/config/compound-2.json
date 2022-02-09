@@ -375,9 +375,8 @@
             "name": "comptrollers",
             "extra_fields": {},
             "params": {
-                "orderBy": "blockTimestamp",
-                "asset": "id",
-                "block": true
+                "orderBy": "id",
+                "initial_value": "0"
             }
         },
         "transformations": {}
@@ -401,9 +400,8 @@
             "name": "accounts",
             "extra_fields": {},
             "params": {
-                "orderBy": "blockTimestamp",
-                "asset": "id",
-                "block": true
+                "orderBy": "id",
+                "initial_value": "0"
             }
 
         },
@@ -471,9 +469,9 @@
             "name": "accountCTokens",
             "extra_fields": {},
             "params": {
-                "orderBy": "id"
+                "orderBy": "id",
+                "initial_value": "0"
             }
-
         },
         "transformations": { }
     },
