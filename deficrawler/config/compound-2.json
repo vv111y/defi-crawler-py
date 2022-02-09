@@ -471,15 +471,12 @@
             "name": "accountCTokens",
             "extra_fields": {},
             "params": {
-                "orderBy": "blockTimestamp",
-                "asset": "id",
-                "block": true
+                "orderBy": "id"
             }
 
         },
         "transformations": { }
     },
-
     "accountCTokenTransactions": {
         "attributes": {
             "tx_id": [
