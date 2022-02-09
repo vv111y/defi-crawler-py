@@ -44,7 +44,7 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
 
 def get_data_batch(query_input, entity, mappings_file, endpoint, aditional_filters=""):
     """
-    Gets all the existing data from the subgraph at the given time range.
+    Gets all the existing data from the subgraph for a given entity. 
     One or mor filters can be passed as parameters and will be applied in the where clause
     """
     are_data = True
@@ -53,14 +53,12 @@ def get_data_batch(query_input, entity, mappings_file, endpoint, aditional_filte
     start = 0
 
     entity_name = mappings_file['entities'][entity]['query']['name']
-    order_by = mappings_file['entities'][entity]['query']['params']['orderBy']
     attributes = get_attributes(entity, mappings_file)
     filters_str = get_filters(aditional_filters)
 
     while are_data:
         query = query_input.format(
             entity_name=entity_name,
-            order_by=order_by,
             n=n,
             start=start,
             attributes=attributes,

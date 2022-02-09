@@ -100,8 +100,6 @@ class Querys:
                 {entity_name}(
                             first: {n}
                             skip: {start}
-                            orderBy: {order_by}
-                            orderDirection: asc
                             where: {{
                                 {aditional_filters}
                             }}
