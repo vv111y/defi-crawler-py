@@ -1133,6 +1133,10 @@
           "reserve",
           "symbol"
         ],
+        "reserve": [
+            "reserve",
+            "id"
+        ],
         "usageAsCollateralEnabled": [
             "usageAsCollateralEnabled"
         ],
