@@ -1186,6 +1186,113 @@
         "tx_id": "tx_id_colon"
       }
     },
+    "ReserveParamsHistoryItem": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "reserve": [
+                "reserve",
+                "id"
+            ],
+            "variableBorrowRate": [
+                "variableBorrowRate"
+            ],
+            "variableBorrowIndex": [
+                "variableBorrowIndex"
+            ],
+            "utilizationRate": [
+                "utilizationRate"
+            ],
+            "stableBorrowRate": [
+                "stableBorrowRate"
+            ],
+            "averageStableBorrowRate": [
+                "averageStableBorrowRate"
+            ],
+            "liquidityIndex": [
+                "liquidityIndex"
+            ],
+            "liquidityRate": [
+                "liquidityRate"
+            ],
+            "totalLiquidity": [
+                "totalLiquidity"
+            ],
+            "totalATokenSupply": [
+                "totalATokenSupply"
+            ],
+            "totalLiquidityAsCollateral": [
+                "totalLiquidityAsCollateral"
+            ],
+            "availableLiquidity": [
+                "availableLiquidity"
+            ],
+            "priceInEth": [
+                "priceInEth"
+            ],
+            "priceInUsd": [
+                "priceInUsd"
+            ],
+            "timestamp": [
+                "timestamp"
+            ],
+            "totalScaledVariableDebt": [
+                "totalScaledVariableDebt"
+            ],
+            "totalCurrentVariableDebt": [
+                "totalCurrentVariableDebt"
+            ],
+            "totalPrincipalStableDebt": [
+                "totalPrincipalStableDebt"
+            ],
+            "lifetimePrincipalStableDebt": [
+                "lifetimePrincipalStableDebt"
+            ],
+            "lifetimeScaledVariableDebt": [
+                "lifetimeScaledVariableDebt"
+            ],
+            "lifetimeCurrentVariableDebt": [
+                "lifetimeCurrentVariableDebt"
+            ],
+            "lifetimeLiquidity": [
+                "lifetimeLiquidity"
+            ],
+            "lifetimeRepayments": [
+                "lifetimeRepayments"
+            ],
+            "lifetimeWithdrawals": [
+                "lifetimeWithdrawals"
+            ],
+            "lifetimeBorrows": [
+                "lifetimeBorrows"
+            ],
+            "lifetimeLiquidated": [
+                "lifetimeLiquidated"
+            ],
+            "lifetimeFlashLoans": [
+                "lifetimeFlashLoans"
+            ],
+            "lifetimeFlashLoanPremium": [
+                "lifetimeFlashLoanPremium"
+            ],
+            "lifetimeReserveFactorAccrued": [
+                "lifetimeReserveFactorAccrued"
+            ],
+            "lifetimeDepositorsInterestEarned": [
+                "lifetimeDepositorsInterestEarned"
+            ]
+        },
+        "query": {
+            "name": "reserveParamsHistoryItems",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "timestamp",
+                "user": "user"
+            }
+        },
+        "transformations": {}
+    },
     "priceHistoryItems": {
       "attributes": {
         "id": [
