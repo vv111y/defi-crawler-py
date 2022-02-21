@@ -20,12 +20,28 @@
           "user",
           "id"
         ],
+        "onBehalfOf": [
+            "onBehalfOf",
+            "id"
+        ],
         "token": [
           "reserve",
           "symbol"
         ],
         "amount": [
           "amount"
+        ],
+        "rate": [
+          "borrowRate"
+        ],
+        "borrowRateMode": [
+          "borrowRateMode"
+        ],
+        "stableTokenDebt": [
+          "stableTokenDebt"
+        ],
+        "variableTokenDebt": [
+            "variableTokenDebt"
         ],
         "timestamp": [
           "timestamp"
@@ -40,8 +56,7 @@
         },
         "name": "borrows",
         "params": {
-          "orderBy": "timestamp",
-          "user": "user"
+          "orderBy": "timestamp"
         }
       },
       "transformations": {
@@ -57,6 +72,10 @@
         "user": [
           "user",
           "id"
+        ],
+        "onBehalfOf": [
+            "onBehalfOf",
+            "id"
         ],
         "token": [
           "reserve",
@@ -140,6 +159,64 @@
         "tx_id": "tx_id_colon"
       }
     },
+    "originationfeeliquidation": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "collateralReserve": [
+          "collateralReserve",
+          "id"
+        ],
+        "collateralUserReserve": [
+          "collateralUserReserve",
+          "id"
+        ],
+        "principalReserve": [
+          "principalReserve",
+          "id"
+        ],
+        "principalUserReserve": [
+          "principalUserReserve",
+          "id"
+        ],
+        "feeLiquidated": [
+          "feeLiquidated"
+        ],
+        "liquidatedCollateralForFee": [
+            "liquidatedCollateralForFee"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "principal_decimals": [
+            "principalReserve",
+            "decimals"
+          ],
+          "collateral_decimals": [
+            "collateralReserve",
+            "decimals"
+          ]
+        },
+        "name": "originationFeeLiquidations",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount_principal": "principal_decimals",
+        "amount_collateral": "collateral_decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
     "repay": {
       "attributes": {
         "tx_id": [
@@ -187,6 +264,14 @@
           "user",
           "id"
         ],
+        "userReserve": [
+            "userReserve",
+            "id"
+        ],
+        "onBehalfOf": [
+            "onBehalfOf",
+            "id"
+        ],
         "token": [
           "reserve",
           "symbol"
@@ -216,43 +301,194 @@
         "tx_id": "tx_id_colon"
       }
     },
-    "flashloans": {
+    "swap": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user": [
+                "user",
+                "id"
+            ],
+            "userReserve": [
+                "userReserve",
+                "id"
+            ],
+            "token": [
+                "reserve",
+                "symbol"
+            ],
+            "borrowRateModeFrom": [
+                "borrowRateModeFrom"
+            ],
+            "borrowRateModeTo": [
+                "borrowRateModeTo"
+            ],
+            "stableBorrowRate": [
+                "stableBorrowRate"
+            ],
+            "variableBorrowRate": [
+                "variableBorrowRate"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "extra_fields": {
+                "decimals": [
+                    "reserve",
+                    "decimals"
+                ]
+            },
+            "name": "swaps",
+            "params": {
+                "orderBy": "timestamp",
+                "user": "user"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
+    "collateralize": {
       "attributes": {
         "tx_id": [
           "id"
         ],
         "user": [
-          "initiator",
+          "user",
           "id"
+        ],
+        "userReserve": [
+            "userReserve",
+            "id"
         ],
         "token": [
           "reserve",
           "symbol"
         ],
-        "amount": [
-          "amount"
+        "fromState": [
+          "fromState"
+        ],
+        "toState": [
+            "toState"
         ],
         "timestamp": [
           "timestamp"
         ]
       },
       "query": {
-        "name": "flashLoans",
         "extra_fields": {
           "decimals": [
             "reserve",
             "decimals"
           ]
         },
+        "name": "usageAsCollaterals",
         "params": {
           "orderBy": "timestamp",
-          "user": "initiator"
+          "user": "user"
         }
       },
       "transformations": {
         "amount": "decimals",
         "tx_id": "tx_id_colon"
       }
+    },
+    "rebalancestableborrowrate": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user": [
+                "user",
+                "id"
+            ],
+            "userReserve": [
+                "userReserve",
+                "id"
+            ],
+            "token": [
+                "reserve",
+                "symbol"
+            ],
+            "borrowRateFrom": [
+                "borrowRateFrom"
+            ],
+            "borrowRateTo": [
+                "borrowRateTo"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "extra_fields": {
+                "decimals": [
+                    "reserve",
+                    "decimals"
+                ]
+            },
+            "name": "rebalanceStableBorrowRates",
+            "params": {
+                "orderBy": "timestamp",
+                "initial_value": 0
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
+    "flashloans": {
+        "attributes": {
+        "tx_id": [
+            "id"
+        ],
+        "user": [
+            "initiator",
+            "id"
+        ],
+        "reserve": [
+            "reserve",
+            "id"
+        ],
+        "token": [
+            "reserve",
+            "symbol"
+        ],
+        "amount": [
+            "amount"
+        ],
+        "target": [
+            "target"
+        ],
+        "totalFee": [
+            "totalFee"
+        ],
+        "timestamp": [
+            "timestamp"
+        ]
+        },
+        "query": {
+        "name": "flashLoans",
+        "extra_fields": {
+            "decimals": [
+            "reserve",
+            "decimals"
+            ]
+        },
+        "params": {
+            "orderBy": "timestamp",
+            "user": "initiator"
+        }
+        },
+        "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+        }
     },
     "rates": {
       "attributes": {
@@ -322,6 +558,15 @@
         "liquidations_count": [
           "liquidationCallHistory",
           "id"
+        ],
+        "unclaimedRewards": [
+            "unclaimedRewards"
+        ],
+        "lifetimeRewards": [
+            "lifetimeRewards"
+        ], 
+        "incentivesLastUpdated": [
+            "incentivesLastUpdated"
         ]
       },
       "query": {
@@ -369,6 +614,840 @@
         "collateral_amount": "decimals",
         "debt_amount": "decimals"
       }
+    },
+    "user_reserves": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "user_id": [
+                "user",
+                "id"
+            ],
+            "pool_id": [
+                "pool",
+                "id"
+            ],
+            "reserve_id": [
+                "reserve",
+                "id"
+            ],
+            "last_update":[
+                "lastUpdateTimestamp"
+            ],
+            "usageAsCollateralEnabledOnUser": [
+                "usageAsCollateralEnabledOnUser"
+            ],
+            "scaledATokenBalance": [
+                "scaledATokenBalance"
+            ],
+            "currentATokenBalance": [
+                "currentATokenBalance"
+            ],
+            "scaledVariableDebt": [
+                "scaledVariableDebt"
+            ],
+            "currentVariableDebt": [
+                "currentVariableDebt"
+            ],
+            "principalStableDebt": [
+                "principalStableDebt"
+            ],
+            "currentStableDebt": [
+                "currentStableDebt"
+            ],
+            "currentTotalDebt": [
+                "currentTotalDebt"
+            ],
+            "stableBorrowRate": [
+                "stableBorrowRate"
+            ],
+            "oldStableBorrowRate": [
+                "oldStableBorrowRate"
+            ],
+            "liquidityRate": [
+                "liquidityRate"
+            ],
+            "stableBorrowLastUpdateTimestamp": [
+                "stableBorrowLastUpdateTimestamp"
+            ],
+            "variableBorrowIndex": [
+                "variableBorrowIndex"
+            ],
+            "aTokenincentivesUserIndex": [
+                "aTokenincentivesUserIndex"
+            ],
+            "vTokenincentivesUserIndex": [
+                "vTokenincentivesUserIndex"
+            ],
+            "sTokenincentivesUserIndex": [
+                "sTokenincentivesUserIndex"
+            ],
+            "aIncentivesLastUpdateTimestamp": [
+                "aIncentivesLastUpdateTimestamp"
+            ],
+            "vIncentivesLastUpdateTimestamp": [
+                "vIncentivesLastUpdateTimestamp"
+            ],
+            "sIncentivesLastUpdateTimestamp": [
+                "sIncentivesLastUpdateTimestamp"
+            ]
+        },
+        "query": {
+            "name": "userReserves",
+            "extra_fields": {
+            },
+            "params": {
+                "orderBy": "lastUpdateTimestamp"
+            }
+        },
+        "transformations": {
+        }
+    },
+    "reserves": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "underlyingAsset": [
+                "underlyingAsset"
+            ],
+            "pool": [
+                "pool",
+                "id"
+            ],
+            "symbol": [
+                "symbol"
+            ],
+            "name": [
+                "name"
+            ],
+            "decimals": [
+                "decimals"
+            ],
+            "usageAsCollateralEnabled": [
+                "usageAsCollateralEnabled"
+            ],
+            "borrowingEnabled": [
+                "borrowingEnabled"
+            ],
+            "stableBorrowRateEnabled": [
+                "stableBorrowRateEnabled"
+            ],
+            "isActive": [
+                "isActive"
+            ],
+            "isFrozen": [
+                "isFrozen"
+            ],
+            "reserveInterestRateStrategy": [
+                "reserveInterestRateStrategy"
+            ],
+            "optimalUtilisationRate": [
+                "optimalUtilisationRate"
+            ],
+            "variableRateSlope1": [
+                "variableRateSlope1"
+            ],
+            "variableRateSlope2": [
+                "variableRateSlope2"
+            ],
+            "stableRateSlope1": [
+                "stableRateSlope1"
+            ],
+            "stableRateSlope2": [
+                "stableRateSlope2"
+            ],
+            "baseVariableBorrowRate": [
+                "baseVariableBorrowRate"
+            ],
+            "baseLTVasCollateral": [
+                "baseLTVasCollateral"
+            ],
+            "reserveLiquidationThreshold": [
+                "reserveLiquidationThreshold"
+            ],
+            "reserveLiquidationBonus": [
+                "reserveLiquidationBonus"
+            ],
+            "utilizationRate": [
+                "utilizationRate"
+            ],
+            "totalLiquidity": [
+                "totalLiquidity"
+            ],
+            "totalATokenSupply": [
+                "totalATokenSupply"
+            ],
+            "totalLiquidityAsCollateral": [
+                "totalLiquidityAsCollateral"
+            ],
+            "availableLiquidity": [
+                "availableLiquidity"
+            ],
+            "totalPrincipalStableDebt": [
+                "totalPrincipalStableDebt"
+            ],
+            "totalScaledVariableDebt": [
+                "totalScaledVariableDebt"
+            ],
+            "totalCurrentVariableDebt": [
+                "totalCurrentVariableDebt"
+            ],
+            "totalDeposits": [
+                "totalDeposits"
+            ],
+            "liquidityRate": [
+                "liquidityRate"
+            ],
+            "averageStableRate": [
+                "averageStableRate"
+            ],
+            "variableBorrowRate": [
+                "variableBorrowRate"
+            ],
+            "stableBorrowRate": [
+                "stableBorrowRate"
+            ],
+            "liquidityIndex": [
+                "liquidityIndex"
+            ],
+            "variableBorrowIndex": [
+                "variableBorrowIndex"
+            ],
+            "reserveFactor": [
+                "reserveFactor"
+            ],
+            "lastUpdateTimestamp": [
+                "lastUpdateTimestamp"
+            ],
+            "stableDebtLastUpdateTimestamp": [
+                "stableDebtLastUpdateTimestamp"
+            ],
+            "aEmissionPerSecond": [
+                "aEmissionPerSecond"
+            ],
+            "vEmissionPerSecond": [
+                "vEmissionPerSecond"
+            ],
+            "sEmissionPerSecond": [
+                "sEmissionPerSecond"
+            ],
+            "aTokenIncentivesIndex": [
+                "aTokenIncentivesIndex"
+            ],
+            "vTokenIncentivesIndex": [
+                "vTokenIncentivesIndex"
+            ],
+            "sTokenIncentivesIndex": [
+                "sTokenIncentivesIndex"
+            ],
+            "aIncentivesLastUpdateTimestamp": [
+                "aIncentivesLastUpdateTimestamp"
+            ],
+            "vIncentivesLastUpdateTimestamp": [
+                "vIncentivesLastUpdateTimestamp"
+            ],
+            "sIncentivesLastUpdateTimestamp": [
+                "sIncentivesLastUpdateTimestamp"
+            ],
+            "lifetimeLiquidity": [
+                "lifetimeLiquidity"
+            ],
+            "lifetimePrincipalStableDebt": [
+                "lifetimePrincipalStableDebt"
+            ],
+            "lifetimeScaledVariableDebt": [
+                "lifetimeScaledVariableDebt"
+            ],
+            "lifetimeCurrentVariableDebt": [
+                "lifetimeCurrentVariableDebt"
+            ],
+            "lifetimeRepayments": [
+                "lifetimeRepayments"
+            ],
+            "lifetimeWithdrawals": [
+                "lifetimeWithdrawals"
+            ],
+            "lifetimeBorrows": [
+                "lifetimeBorrows"
+            ],
+            "lifetimeLiquidated": [
+                "lifetimeLiquidated"
+            ],
+            "lifetimeFlashLoans": [
+                "lifetimeFlashLoans"
+            ],
+            "lifetimeFlashLoanPremium": [
+                "lifetimeFlashLoanPremium"
+            ],
+            "lifetimeDepositorsInterestEarned": [
+                "lifetimeDepositorsInterestEarned"
+            ],
+            "lifetimeReserveFactorAccrued": [
+                "lifetimeReserveFactorAccrued"
+            ],
+
+            "PriceOracleAsset": [
+                "price",
+                "id"
+            ],
+            "AToken": [
+                "aToken",
+                "id"
+            ],
+            "VToken": [
+                "vToken",
+                "id"
+            ],
+            "SToken": [
+                "sToken",
+                "id"
+            ]
+        },
+        "query": {
+            "name": "reserves",
+            "extra_fields": {},
+            "params": {
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {
+
+        }
+    },
+    "aTokenBalanceHistoryItems": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "user_id":[
+                "userReserve",
+                "user",
+                "id"
+            ],
+
+            "scaledATokenBalance":[
+                "scaledATokenBalance"
+            ],
+            "currentATokenBalance":[
+                "currentATokenBalance"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "name": "atokenBalanceHistoryItems",
+            "extra_fields": {
+                "userReserve": [
+                    "userReserve"
+                ]
+            },
+            "params": {
+                "user": "user",
+                "initial_value": "0",
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
+    "stableTokenDelegatedAllowances": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "fromUser": [
+                "fromUser",
+                "id"
+            ],
+            "toUser": [
+                "toUser",
+                "id"
+            ],
+            "amountAllowed": [
+                "amountAllowed"
+            ]
+        },
+        "query": {
+            "name": "stableTokenDelegatedAllowances",
+            "extra_fields": {
+            },
+            "params": {
+                "first": "9",
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "id": "tx_id_colon",
+            "user_reserve_id": "tx_id_colon",
+            "fromUser_id": "tx_id_colon",
+            "toUser_id": "tx_id_colon"
+        }
+    },
+    "variableTokenDelegatedAllowances": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "fromUser": [
+                "fromUser",
+                "id"
+            ],
+            "toUser": [
+                "toUser",
+                "id"
+            ],
+            "amountAllowed": [
+                "amountAllowed"
+            ]
+        },
+        "query": {
+            "name": "variableTokenDelegatedAllowances",
+            "extra_fields": {
+            },
+            "params": {
+                "first": "9",
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "id": "tx_id_colon",
+            "user_reserve_id": "tx_id_colon",
+            "fromUser_id": "tx_id_colon",
+            "toUser_id": "tx_id_colon"
+        }
+    },
+    "vTokenBalanceHistoryItems": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "user_id":[
+                "userReserve",
+                "user",
+                "id"
+            ],
+
+            "scaledVTokenBalance":[
+                "scaledVariableDebt"
+            ],
+            "currentATokenBalance":[
+                "currentVariableDebt"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "name": "vtokenBalanceHistoryItems",
+            "extra_fields": {
+                "userReserve": [
+                    "userReserve"
+                ]
+            },
+            "params": {
+                "user": "user",
+                "initial_value": "0",
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
+    "sTokenBalanceHistoryItems": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "user_reserve_id": [
+                "userReserve",
+                "id"
+            ],
+            "user_id":[
+                "userReserve",
+                "user",
+                "id"
+            ],
+
+            "principalStableDebt":[
+                "principalStableDebt"
+            ],
+            "currentStableDebt":[
+                "currentStableDebt"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "name": "stokenBalanceHistoryItems",
+            "extra_fields": {
+                "userReserve": [
+                    "userReserve"
+                ]
+            },
+            "params": {
+                "user": "user",
+                "initial_value": "0",
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {
+            "amount": "decimals",
+            "tx_id": "tx_id_colon"
+        }
+    },
+    "reserveConfigurationHistoryItems": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "reserve": [
+            "reserve",
+            "id"
+        ],
+        "usageAsCollateralEnabled": [
+            "usageAsCollateralEnabled"
+        ],
+        "borrowingEnabled": [
+            "borrowingEnabled"
+        ],
+        "stableBorrowRateEnabled": [
+          "stableBorrowRateEnabled"
+        ],
+        "isActive": [
+            "isActive"
+        ],
+        "isFrozen": [
+            "isFrozen"
+        ],
+        "reserveInterestRateStrategy": [
+            "reserveInterestRateStrategy"
+        ],
+        "baseLTVasCollateral": [
+            "baseLTVasCollateral"
+        ],
+        "reserveLiquidationThreshold": [
+            "reserveLiquidationThreshold"
+        ],
+        "reserveLiquidationBonus": [
+            "reserveLiquidationBonus"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "name": "reserveConfigurationHistoryItems",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "ReserveParamsHistoryItem": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "reserve": [
+                "reserve",
+                "id"
+            ],
+            "variableBorrowRate": [
+                "variableBorrowRate"
+            ],
+            "variableBorrowIndex": [
+                "variableBorrowIndex"
+            ],
+            "utilizationRate": [
+                "utilizationRate"
+            ],
+            "stableBorrowRate": [
+                "stableBorrowRate"
+            ],
+            "averageStableBorrowRate": [
+                "averageStableBorrowRate"
+            ],
+            "liquidityIndex": [
+                "liquidityIndex"
+            ],
+            "liquidityRate": [
+                "liquidityRate"
+            ],
+            "totalLiquidity": [
+                "totalLiquidity"
+            ],
+            "totalATokenSupply": [
+                "totalATokenSupply"
+            ],
+            "totalLiquidityAsCollateral": [
+                "totalLiquidityAsCollateral"
+            ],
+            "availableLiquidity": [
+                "availableLiquidity"
+            ],
+            "priceInEth": [
+                "priceInEth"
+            ],
+            "priceInUsd": [
+                "priceInUsd"
+            ],
+            "timestamp": [
+                "timestamp"
+            ],
+            "totalScaledVariableDebt": [
+                "totalScaledVariableDebt"
+            ],
+            "totalCurrentVariableDebt": [
+                "totalCurrentVariableDebt"
+            ],
+            "totalPrincipalStableDebt": [
+                "totalPrincipalStableDebt"
+            ],
+            "lifetimePrincipalStableDebt": [
+                "lifetimePrincipalStableDebt"
+            ],
+            "lifetimeScaledVariableDebt": [
+                "lifetimeScaledVariableDebt"
+            ],
+            "lifetimeCurrentVariableDebt": [
+                "lifetimeCurrentVariableDebt"
+            ],
+            "lifetimeLiquidity": [
+                "lifetimeLiquidity"
+            ],
+            "lifetimeRepayments": [
+                "lifetimeRepayments"
+            ],
+            "lifetimeWithdrawals": [
+                "lifetimeWithdrawals"
+            ],
+            "lifetimeBorrows": [
+                "lifetimeBorrows"
+            ],
+            "lifetimeLiquidated": [
+                "lifetimeLiquidated"
+            ],
+            "lifetimeFlashLoans": [
+                "lifetimeFlashLoans"
+            ],
+            "lifetimeFlashLoanPremium": [
+                "lifetimeFlashLoanPremium"
+            ],
+            "lifetimeReserveFactorAccrued": [
+                "lifetimeReserveFactorAccrued"
+            ],
+            "lifetimeDepositorsInterestEarned": [
+                "lifetimeDepositorsInterestEarned"
+            ]
+        },
+        "query": {
+            "name": "reserveParamsHistoryItems",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "timestamp",
+                "user": "user"
+            }
+        },
+        "transformations": {}
+    },
+    "priceHistoryItems": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "price": [
+          "price"
+        ],
+        "PriceOracleAsset": [
+            "asset",
+            "id"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+        },
+        "name": "priceHistoryItems",
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "usdEthPriceHistoryItems": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "price": [
+                "price"
+            ],
+            "oracle": [
+                "oracle",
+                "id"
+            ],
+            "timestamp": [
+                "timestamp"
+            ]
+        },
+        "query": {
+            "extra_fields": {
+            },
+            "name": "usdEthPriceHistoryItems",
+            "params": {
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {
+            "tx_id": "tx_id_colon"
+        }
+    },
+    "priceOracleAssets": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "PriceOracle ": [
+            "oracle",
+            "id"
+        ],
+        "priceInEth": [
+            "priceInEth"
+        ],
+        "priceSource": [
+            "priceSource"
+        ],
+        "isFallbackRequired": [
+            "isFallbackRequired"
+        ],
+        "type": [
+            "type"
+        ],
+        "platform": [
+            "platform"
+        ],
+        "dependentAssets": [
+            "dependentAssets",
+            "id"
+        ],
+        "fromChainlinkSourcesRegistry": [
+            "fromChainlinkSourcesRegistry"
+        ],
+        "lastUpdateTimestamp": [
+          "lastUpdateTimestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+        },
+        "name": "priceOracleAssets",
+        "params": {
+          "orderBy": "lastUpdateTimestamp"
+        }
+      },
+      "transformations": {
+        "dependentAssets": "transfer_list"
+      }
+    },
+    "priceOracles": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "version": [
+            "version"
+        ],
+        "proxyPriceProvider": [
+            "proxyPriceProvider"
+        ],
+        "usdPriceEth": [
+            "usdPriceEth"
+        ],
+        "usdPriceEthMainSource": [
+            "usdPriceEthMainSource"
+        ],
+        "usdPriceEthFallbackRequired": [
+            "usdPriceEthFallbackRequired"
+        ],
+        "fallbackPriceOracle": [
+            "fallbackPriceOracle"
+        ],
+        "usdDependentAssets": [
+            "usdDependentAssets",
+            "id"
+        ],
+        "tokens": [
+            "tokens",
+            "id"
+        ],
+        "tokensWithFallback": [
+            "tokensWithFallback",
+            "id"
+        ],
+        "lastUpdateTimestamp": [
+          "lastUpdateTimestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+        },
+        "name": "priceOracles",
+        "params": {
+          "orderBy": "lastUpdateTimestamp"
+        }
+      },
+      "transformations": {
+        "usdDependentAssets": "transfer_list"
+      }
     }
+
+
   }
 }

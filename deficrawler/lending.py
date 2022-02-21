@@ -75,7 +75,6 @@ class Lending(ProtocolBase):
         """
         Gets rates data for the specified entity in the from_data to to_date period.
         """
-
         from_timestamp = int(
             datetime.strptime(from_date, '%d/%m/%Y %H:%M:%S').timestamp())
 
@@ -151,6 +150,62 @@ class Lending(ProtocolBase):
             entity='user_position',
             filters={user_name: user}
         )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+
+    def get_user_history(self, user):
+        """
+        Returns the user positions (portfolio) history of the given user
+        """
+
+        config = super().get_protocol_config('user_history')
+        user_name = self.mappings_file['entities']['user_history']['query']['params']['user']
+
+        response_data = super().query_data_filtered(
+            entity='user_history',
+            filters={user_name: user}
+        )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+
+    def get_user_reserves(self):
+        """Returns all user reserves."""
+
+        config = super().get_protocol_config('user_reserves')
+
+        response_data = super().query_data_parameter(
+            entity='user_reserves',
+        )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+
+    def get_entity_data(self, entity, filter=None, smallbatch=False):
+        """Returns data from an entity that has no timestamp"""
+
+        config = super().get_protocol_config(entity)
+
+        if filter:
+            response_data = super().query_data_filtered(
+                entity=entity,
+                filters=filter,
+                smallbatch=smallbatch
+            )
+
+        else:
+
+            response_data = super().query_data_parameter(
+                entity=entity,
+                smallbatch=smallbatch
+            )
 
         return super().map_data(
             response_data=response_data,

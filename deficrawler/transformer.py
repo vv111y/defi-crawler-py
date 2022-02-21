@@ -36,6 +36,7 @@ class Transformer:
             "rates_units_comp": self.rates_units_comp,
             "rates_na": self.rates_na,
             "to_int": self.to_int,
+            "transfer_list": self.transfer_list,
             "na": self.na
         }
 
@@ -324,7 +325,6 @@ class Transformer:
 
         return amount.replace("-", "")
 
-
     def to_int(self, common_field, element, protocol_field, query_elements):
         """
         Transform the value to integer
@@ -340,3 +340,9 @@ class Transformer:
         Returns NA for non applicable field
         """
         return 'NA'
+
+    def transfer_list(self, common_field, element, protocol_field, query_elements):
+        """
+        Returns a nested list in element
+        """
+        return element[common_field]

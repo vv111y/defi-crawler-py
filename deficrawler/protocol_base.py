@@ -147,6 +147,16 @@ class ProtocolBase:
 
         return supported
 
+    def all_entities(self):
+        """
+        Returns an array with all entities for each type of protocol
+        """
+        entities = []
+        for attr, _ in self.mappings_file['entities'].items():
+                entities.append(attr)
+
+        return entities
+
     def __get_protocol_file(self, protocol, version, chain):
         """
         Gets the json file for the specified protocol and the specified version.
