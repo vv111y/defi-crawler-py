@@ -233,6 +233,8 @@
         "name": "accountCTokens",
         "extra_fields": {},
         "params": {
+          "orderBy": "id",
+          "initial_value": "0",
           "user": "account"
         }
       },
@@ -270,6 +272,252 @@
         "stable_borrow_rate": "rates_na",
         "supply_rate": "rates_units_comp"
       }
+    },
+    "markets": {
+        "attributes": {
+            "borrowRate": [
+                "borrowRate"
+            ],
+            "cash": [
+                "cash"
+            ],
+            "collateralFactor": [
+                "collateralFactor"
+            ],
+            "exchangeRate":  [
+                "exchangeRate"
+            ],
+            "interestRateModelAddress": [
+                "interestRateModelAddress"
+            ],
+            "name": [
+                "name"
+            ],
+            "reserves": [
+                "reserves"
+            ],
+            "supplyRate": [
+                "supplyRate"
+            ],
+            "symbol": [
+                "symbol"
+            ],
+            "id": [
+                "id"
+            ],
+            "totalBorrows": [
+                "totalBorrows"
+            ],
+            "totalSupply": [
+                "totalSupply"
+            ],
+            "underlyingAddress": [
+                "underlyingAddress"
+            ],
+            "underlyingName": [
+                "underlyingName"
+            ],
+            "underlyingPrice": [
+                "underlyingPrice"
+            ],
+            "underlyingSymbol": [
+                "underlyingSymbol"
+            ],
+            "accrualBlockNumber": [
+                "accrualBlockNumber"
+            ],
+            "blockTimestamp": [
+                "blockTimestamp"
+            ],
+            "borrowIndex": [
+                "borrowIndex"
+            ],
+            "reserveFactor": [
+                "reserveFactor"
+            ],
+            "underlyingPriceUSD": [
+                "underlyingPriceUSD"
+            ],
+            "underlyingDecimals": [
+                "underlyingDecimals"
+            ]
+        },
+        "query": {
+            "name": "markets",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "blockTimestamp",
+                "asset": "id",
+                "block": true
+            }
+        },
+        "transformations": {}
+    },
+    "comptrollers": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "priceOracle": [
+                "priceOracle"
+            ],
+            "closeFactor": [
+                "closeFactor"
+            ],
+            "liquidationIncentive": [
+                "liquidationIncentive"
+            ],
+            "maxAssets": [
+                "maxAssets"
+            ]
+        },
+        "query": {
+            "name": "comptrollers",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "id",
+                "initial_value": "0"
+            }
+        },
+        "transformations": {}
+    },
+    "accounts": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "countLiquidated": [
+                "countLiquidated"
+            ],
+            "countLiquidator": [
+                "countLiquidator"
+            ],
+            "hasBorrowed": [
+                "hasBorrowed"
+            ]
+        },
+        "query": {
+            "name": "accounts",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "id",
+                "initial_value": "0"
+            }
+
+        },
+        "transformations": {
+
+        }
+    },
+    "accountCTokens": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "market": [
+                "market",
+                "id"
+            ],
+            "symbol": [
+                "symbol"
+            ],
+            "account": [
+                "account",
+                "id"
+            ],
+            "accrualBlockNumber": [
+                "accrualBlockNumber"
+            ],
+            "enteredMarket": [
+                "enteredMarket"
+            ],
+            "cTokenBalance": [
+                "cTokenBalance"
+            ],
+            "totalUnderlyingSupplied": [
+                "totalUnderlyingSupplied"
+            ],
+            "totalUnderlyingRedeemed": [
+                "totalUnderlyingRedeemed"
+            ],
+            "accountBorrowIndex": [
+                "accountBorrowIndex"
+            ],
+            "totalUnderlyingBorrowed": [
+                "totalUnderlyingBorrowed"
+            ],
+            "totalUnderlyingRepaid": [
+                "totalUnderlyingRepaid"
+            ],
+            "storedBorrowBalance": [
+                "storedBorrowBalance"
+            ],
+            "supplyBalanceUnderlying": [
+                "supplyBalanceUnderlying"
+            ],
+            "lifetimeSupplyInterestAccrued": [
+                "lifetimeSupplyInterestAccrued"
+            ],
+            "borrowBalanceUnderlying": [
+                "borrowBalanceUnderlying"
+            ],
+            "lifetimeBorrowInterestAccrued": [
+                "lifetimeBorrowInterestAccrued"
+            ]
+        },
+        "query": {
+            "name": "accountCTokens",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "id",
+                "initial_value": "0"
+            }
+        },
+        "transformations": { }
+    },
+    "accountCTokenTransactions": {
+        "attributes": {
+            "tx_id": [
+                "id"
+            ],
+            "account": [
+                "account",
+                "id"
+            ],
+            "tx_hash": [
+                "tx_hash"
+            ],
+            "timestamp": [
+                "timestamp"
+            ],
+            "block": [
+                "block"
+            ],
+            "logIndex": [
+                "logIndex"
+            ],
+            "collateralFactor": [
+                "account",
+                "market",
+                "collateralFactor"
+            ],
+            "cTokenBalance": [
+                "account",
+                "cTokenBalance"
+            ],
+            "enteredMarket": [
+                "account",
+                "enteredMarket"
+            ]
+        },
+        "query": {
+            "name": "accountCTokenTransactions",
+            "extra_fields": {},
+            "params": {
+                "orderBy": "timestamp"
+            }
+        },
+        "transformations": {}
     }
   }
 }
