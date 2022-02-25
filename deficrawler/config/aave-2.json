@@ -960,84 +960,6 @@
             "tx_id": "tx_id_colon"
         }
     },
-    "stableTokenDelegatedAllowances": {
-        "attributes": {
-            "id": [
-                "id"
-            ],
-            "user_reserve_id": [
-                "userReserve",
-                "id"
-            ],
-            "fromUser": [
-                "fromUser",
-                "id"
-            ],
-            "toUser": [
-                "toUser",
-                "id"
-            ],
-            "amountAllowed": [
-                "amountAllowed"
-            ]
-        },
-        "query": {
-            "name": "stableTokenDelegatedAllowances",
-            "extra_fields": {
-            },
-            "params": {
-                "first": "9",
-                "initial_value": "0",
-                "orderBy": "id"
-            }
-        },
-        "transformations": {
-            "amount": "decimals",
-            "id": "tx_id_colon",
-            "user_reserve_id": "tx_id_colon",
-            "fromUser_id": "tx_id_colon",
-            "toUser_id": "tx_id_colon"
-        }
-    },
-    "variableTokenDelegatedAllowances": {
-        "attributes": {
-            "id": [
-                "id"
-            ],
-            "user_reserve_id": [
-                "userReserve",
-                "id"
-            ],
-            "fromUser": [
-                "fromUser",
-                "id"
-            ],
-            "toUser": [
-                "toUser",
-                "id"
-            ],
-            "amountAllowed": [
-                "amountAllowed"
-            ]
-        },
-        "query": {
-            "name": "variableTokenDelegatedAllowances",
-            "extra_fields": {
-            },
-            "params": {
-                "first": "9",
-                "initial_value": "0",
-                "orderBy": "id"
-            }
-        },
-        "transformations": {
-            "amount": "decimals",
-            "id": "tx_id_colon",
-            "user_reserve_id": "tx_id_colon",
-            "fromUser_id": "tx_id_colon",
-            "toUser_id": "tx_id_colon"
-        }
-    },
     "vTokenBalanceHistoryItems": {
         "attributes": {
             "tx_id": [
@@ -1123,6 +1045,62 @@
             "amount": "decimals",
             "tx_id": "tx_id_colon"
         }
+    },
+    "stableTokenDelegatedAllowances": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "fromUser": [
+                "fromUser",
+                "id"
+            ],
+            "toUser": [
+                "toUser",
+                "id"
+            ],
+            "amountAllowed": [
+                "amountAllowed"
+            ]
+        },
+        "query": {
+            "name": "stableTokenDelegatedAllowances",
+            "extra_fields": {
+            },
+            "params": {
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {}
+    },
+    "variableTokenDelegatedAllowances": {
+        "attributes": {
+            "id": [
+                "id"
+            ],
+            "fromUser": [
+                "fromUser",
+                "id"
+            ],
+            "toUser": [
+                "toUser",
+                "id"
+            ],
+            "amountAllowed": [
+                "amountAllowed"
+            ]
+        },
+        "query": {
+            "name": "variableTokenDelegatedAllowances",
+            "extra_fields": {
+            },
+            "params": {
+                "initial_value": "0",
+                "orderBy": "id"
+            }
+        },
+        "transformations": {}
     },
     "reserveConfigurationHistoryItems": {
       "attributes": {
